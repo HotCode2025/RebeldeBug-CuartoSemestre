@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA LEYENDA DE AANG: AVATAR</title>
+</head>
+<body>
+
+```
+<h1>AVATAR 🔥 💧 🌱 💨 </h1>
+
+<!-- Reglas del juego -->
+<details>
+    <summary>📜 Ver reglas del juego</summary>
+
+    <h3>¿Cómo jugar?</h3>
+
+    <p>Primero debes seleccionar un personaje para comenzar la batalla.</p>
+
+    <p>Tanto el jugador como el enemigo comienzan con 3 vidas.</p>
+
+    <p>En cada ronda ambos realizarán un ataque.</p>
+
+    <p>Si ambos utilizan el mismo ataque, la ronda termina en empate.</p>
+
+    <h3>Ventajas de los ataques</h3>
+
+    <ul>
+        <li>🔥 Fuego vence a 🌱 Tierra</li>
+        <li>💧 Agua vence a 🔥 Fuego</li>
+        <li>🌱 Tierra vence a 💨 Aire</li>
+        <li>💨 Aire vence a 💧 Agua</li>
+    </ul>
+
+    <p>Gana el jugador que logre dejar al enemigo sin vidas.</p>
+</details>
+
+<!-- Sección de Selección de Personaje -->
+<section id="seleccionar-personaje">
+    <h2>Elige tu personaje</h2>
+    
+    <label for="zuko">Zuko</label>
+    <input type="radio" name="personaje" id="zuko"/>
+
+    <label for="katara">Katara</label>
+    <input type="radio" name="personaje" id="katara"/>
+
+    <label for="aang">Aang</label>
+    <input type="radio" name="personaje" id="aang"/>
+
+    <label for="toph">Toph</label>
+    <input type="radio" name="personaje" id="toph"/>
+
+    <button id="boton-personaje">Seleccionar</button>
+    
+    <p id="personaje-jugador"></p>
+    <p id="ataque-enemigo"></p>
+</section>
+
+<!-- Sección de Selección de Ataque -->
+<section id="seleccionar-ataque">
+    <h2>Elige tu ataque</h2>
+    
+    <p>Tu personaje tiene <span id="vidas-jugador">3</span> vidas</p>
+    <p>El personaje enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+    
+    <p>
+        <button id="boton-fuego">Fuego 🔥</button>
+        <button id="boton-agua">Agua 💧</button>
+        <button id="boton-tierra">Tierra 🌱</button>
+        <button id="boton-aire">Aire 💨</button>
+    </p>
+</section>
+
+<!-- Sección de Historial de Mensajes -->
+<section id="mensajes">
+    <p>¡Elige un personaje para iniciar la batalla!</p>
+</section>
+
+<!-- Sección de Reinicio -->
+<section id="reiniciar">
+    <button id="boton-reiniciar">Reiniciar</button>
+</section>
+
+<!-- Enlace al archivo de lógica del juego -->
+<script src="./js/avatar.js"></script>
+```
+
+</body>
+</html>
