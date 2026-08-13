@@ -141,7 +141,7 @@ function ataqueAleatorioEnemigo() {
 
 // NUEVA FUNCIÓN: Lógica de combate (Quién gana a quién)
 function combate() {
-    let spanVidaJugador = document.getElementById('vidas-jugador') // Mantengo tu id "vidad" del HTML
+    let spanVidaJugador = document.getElementById('vidas-jugador') // Mantengo tu id "vidas" del HTML
     let spanVidaEnemigo = document.getElementById('vidas-enemigo')
     let resultado
 

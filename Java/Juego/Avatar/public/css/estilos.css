@@ -1,0 +1,544 @@
+/* FUENTES Y CONFIGURACIÓN GENERAL */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px;
+
+    background:
+        radial-gradient(circle at top, #30305c 0%, #1e1e2f 45%, #11111d 100%);
+
+    color: white;
+
+    font-family: "Kalam", cursive;
+
+    text-align: center;
+
+    min-height: 100vh;
+}
+
+
+/* TÍTULO PRINCIPAL */
+
+h1 {
+    margin: 10px auto 25px;
+
+    padding: 20px;
+
+    color: #ffb300;
+
+    background: linear-gradient(
+        135deg,
+        #29294a,
+        #17172b
+    );
+
+    border: 3px solid #ff9800;
+
+    border-radius: 20px;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 55px;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        3px 3px 0px #000,
+        0px 0px 15px #ff6f00;
+
+    box-shadow:
+        0 0 20px rgba(255, 152, 0, 0.5);
+}
+
+
+/* TÍTULOS */
+
+h2 {
+    margin-top: 35px;
+
+    color: #80deea;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 36px;
+
+    letter-spacing: 2px;
+
+    text-shadow: 2px 2px 4px #000;
+}
+
+h3 {
+    color: #ffcc80;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 25px;
+}
+
+
+/* REGLAS */
+
+details {
+    max-width: 750px;
+
+    margin: 0 auto 30px;
+
+    padding: 18px;
+
+    background: rgba(41, 41, 74, 0.9);
+
+    border: 2px solid #4fc3f7;
+
+    border-radius: 15px;
+
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.25);
+}
+
+summary {
+    cursor: pointer;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 24px;
+
+    color: #81d4fa;
+}
+
+details p,
+details li {
+    font-size: 18px;
+}
+
+
+/* SELECCIÓN DE PERSONAJE */
+
+#seleccionar-personaje {
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+
+/* FLEXBOX - PERSONAJES */
+
+.personajes {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    margin: 30px auto;
+}
+
+
+/* TARJETAS DE PERSONAJES */
+
+.personaje-card {
+    width: 190px;
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 25px 15px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s,
+        border 0.3s;
+
+    border: 3px solid transparent;
+
+    user-select: none;
+}
+
+
+/* Ocultamos el radio original */
+
+.personaje-card input {
+    display: none;
+}
+
+
+/* Icono del elemento */
+
+.elemento {
+    font-size: 55px;
+
+    transition: transform 0.3s;
+}
+
+
+/* Nombre */
+
+.nombre-personaje {
+    font-family: "Bangers", cursive;
+
+    font-size: 34px;
+
+    letter-spacing: 2px;
+
+    text-shadow: 2px 2px 4px #000;
+}
+
+
+/* Elemento */
+
+.elemento-nombre {
+    font-family: "Kalam", cursive;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+/* EFECTO HOVER */
+
+.personaje-card:hover {
+    transform: translateY(-12px) scale(1.05);
+
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.personaje-card:hover .elemento {
+    transform: scale(1.3) rotate(5deg);
+}
+
+
+/* PERSONAJE SELECCIONADO */
+
+.personaje-card:has(input:checked) {
+    transform: scale(1.08);
+
+    border: 4px solid white;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 35px currentColor;
+}
+
+
+/* FUEGO */
+
+.fuego {
+    background:
+        linear-gradient(
+            145deg,
+            #4b0000,
+            #a51c00,
+            #ff6f00
+        );
+
+    color: #fff3e0;
+
+    border-color: #ff5722;
+}
+
+
+/* AGUA */
+
+.agua {
+    background:
+        linear-gradient(
+            145deg,
+            #003b73,
+            #006994,
+            #4fc3f7
+        );
+
+    color: white;
+
+    border-color: #4fc3f7;
+}
+
+
+/* AIRE */
+
+.aire {
+    background:
+        linear-gradient(
+            145deg,
+            #8d7b45,
+            #d8c98c,
+            #fff3b0
+        );
+
+    color: #302b16;
+
+    border-color: #ffe082;
+}
+
+
+/* TIERRA */
+
+.tierra {
+    background:
+        linear-gradient(
+            145deg,
+            #263d20,
+            #4d6b36,
+            #8b795e
+        );
+
+    color: #f1ead8;
+
+    border-color: #8bc34a;
+}
+
+
+/* BOTÓN SELECCIONAR */
+
+#boton-personaje {
+    padding: 14px 30px;
+
+    margin: 15px;
+
+    border: 3px solid #ffb300;
+
+    border-radius: 12px;
+
+    background: #29294a;
+
+    color: #ffcc80;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#boton-personaje:hover {
+    background: #ff9800;
+
+    color: #1e1e2f;
+
+    transform: scale(1.08);
+}
+
+
+/* SELECCIÓN DE ATAQUE */
+
+#seleccionar-ataque {
+    margin-top: 35px;
+}
+
+.vidas {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+}
+
+.vidas p {
+    font-size: 20px;
+}
+
+.vidas span {
+    font-family: "Bangers", cursive;
+
+    font-size: 28px;
+
+    color: #ffeb3b;
+}
+
+
+/* ATAQUES - FLEXBOX */
+
+.ataques {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 25px auto;
+}
+
+
+/* Botones de ataque */
+
+.ataque {
+    min-width: 150px;
+
+    padding: 15px 25px;
+
+    border: 3px solid white;
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    text-shadow: 2px 2px 3px #000;
+
+    transition: 0.3s;
+}
+
+.ataque:hover {
+    transform: translateY(-7px) scale(1.08);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* MENSAJES */
+
+#mensajes {
+    max-width: 750px;
+
+    margin: 35px auto;
+
+    padding: 25px;
+
+    background: rgba(41, 41, 74, 0.95);
+
+    border: 2px solid #80deea;
+
+    border-radius: 20px;
+
+    font-size: 22px;
+
+    box-shadow: 0 0 20px rgba(128, 222, 234, 0.2);
+}
+
+
+/* REINICIAR */
+
+#reiniciar button {
+    padding: 12px 25px;
+
+    background: #29294a;
+
+    color: white;
+
+    border: 2px solid #ef5350;
+
+    border-radius: 10px;
+
+    font-family: "Bangers", cursive;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#reiniciar button:hover {
+    background: #ef5350;
+
+    transform: scale(1.08);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 42px;
+
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .personajes {
+        gap: 15px;
+    }
+
+    .personaje-card {
+        width: 160px;
+        min-height: 190px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    h1 {
+        font-size: 32px;
+
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 27px;
+    }
+
+    .personajes {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .personaje-card {
+        width: 85%;
+
+        max-width: 300px;
+    }
+
+    .ataques {
+        flex-direction: column;
+    }
+
+    .ataque {
+        width: 85%;
+
+        max-width: 300px;
+    }
+
+    .vidas {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+}
