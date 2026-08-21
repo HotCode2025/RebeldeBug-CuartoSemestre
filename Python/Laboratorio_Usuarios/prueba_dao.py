@@ -1,6 +1,7 @@
 from usuario import Usuario
 from usuario_dao import UsuarioDao
 
+
 print("=== USUARIOS ACTUALES ===")
 
 usuarios = UsuarioDao.seleccionar()
@@ -9,10 +10,10 @@ for usuario in usuarios:
     print(usuario)
 
 
-print("\n=== ACTUALIZANDO USUARIO 4 ===")
+print("\n=== ACTUALIZANDO USUARIO 6 ===")
 
 usuario = Usuario(
-    id_usuario=4,
+    id_usuario=6,
     username="usuario_modificado",
     password="5678"
 )
@@ -29,8 +30,7 @@ usuarios = UsuarioDao.seleccionar()
 for usuario in usuarios:
     print(usuario)
 
-
-print("\n=== ELIMINANDO USUARIO 4 ===")
+print("\n=== ELIMINANDO USUARIO 6 ===")
 
 UsuarioDao.eliminar(usuario)
 
