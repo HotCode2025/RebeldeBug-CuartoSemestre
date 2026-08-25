@@ -2,7 +2,7 @@ const productos =[
     {
         id: 1,
         productName: "Whisky The Glenrothers 12 años Single Malt",
-        price: 258.940,
+        price: 258940,
         quanty: 1,
         img:"/client/media/glenrothers.png",
 
@@ -11,7 +11,7 @@ const productos =[
     {
         id: 2,
         productName: "Whisky Chivas Regal 18 años",
-        price: 185.080,
+        price: 185080,
         quanty: 1,
         img:"/client/media/chivas.png",
 
@@ -20,7 +20,7 @@ const productos =[
     {
         id: 3,
         productName: "Vodka Absolute Elix 1L",
-        price: 80.670,
+        price: 80670,
         quanty: 1,
         img:"/client/media/absolute.jfif",
 
@@ -29,7 +29,7 @@ const productos =[
     {
         id: 4,
         productName: "Licor ST German 700ml",
-        price: 112.800,
+        price: 112800,
         quanty: 1,
         img:"/client/media/stgerman.png",
 
@@ -38,7 +38,7 @@ const productos =[
     {
         id: 5,
         productName: "Pisco Calavera Reposado 750cc",
-        price: 73.690,
+        price: 73690,
         quanty: 1,
         img:"/client/media/pisco.png",
 
