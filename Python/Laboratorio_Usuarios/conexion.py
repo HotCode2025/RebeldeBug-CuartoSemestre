@@ -7,7 +7,7 @@ class Conexion:
 
     DATABASE = "laboratorio_usuarios"
     USERNAME = "postgres"
-    PASSWORD = "M3l1n4"
+    PASSWORD = "La_contraseña_de_cada_una"
     DB_PORT = "5432"
     HOST = "localhost"
 
