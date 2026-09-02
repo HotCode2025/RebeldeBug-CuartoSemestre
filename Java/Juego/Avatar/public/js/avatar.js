@@ -287,6 +287,8 @@ function iniciarJuego() {
 // SELECCION DEL PERSONAJE
 function seleccionarPersonajeJugador() { 
     const personajeJugador = document.getElementById('personaje-jugador') 
+    const sectionMensajes = document.getElementById('mensajes')
+    
     let personajeSeleccionado = '' 
     if (inputZuko.checked) { 
         personajeSeleccionado = 'zuko 🔥' 
@@ -303,6 +305,9 @@ function seleccionarPersonajeJugador() {
     else { personajeJugador.innerHTML = 'Selecciona un personaje' 
         return } 
     personajeJugador.innerHTML = `Seleccionaste a ${personajeSeleccionado}` 
+    
+    sectionMensajes.innerHTML = '<p>⚡ ¡Elige un ataque para iniciar el combate! ⚡</p>'
+    
     sectionSeleccionarAtaque.style.display = 'block' 
     sectionSeleccionarPersonaje.style.display = 'none'
 }
@@ -350,14 +355,10 @@ function combate() {
     revisarVidas() 
 }
 
-// MOSTRAR MENSAJE DE CADA RONDA
+// MOSTRAR SOLO EL ÚLTIMO MENSAJE DE CADA RONDA
 function crearMensaje(resultado) { 
-    const parrafo = document.createElement('p') 
-    parrafo.innerHTML = 
-        `Atacaste con ${ataqueJugador}, ` +
-        `el enemigo atacó con ${ataqueEnemigo}. ` + 
-        `${resultado}` 
-        sectionMensajes.appendChild(parrafo) 
+    const parrafo = document.getElementById('mensajes')
+    sectionMensajes.innerHTML = `<p>Atacaste con ${ataqueJugador}, el enemigo atacó con ${ataqueEnemigo}. ${resultado}</p>` 
 }
 
 // REVISAR VIDAS
@@ -377,9 +378,8 @@ function revisarVidas(){
 // FINAL DEL JUEGO
 function crearMensajeFinal(resultadoFinal){
     const parrafo = document.createElement('p')
-    parrafo.innerHTML = `<strong>${resultadoFinal}</strong>`
-
-    sectionMensajes.appendChild(parrafo) 
+    sectionMensajes.innerHTML = `<p><strong>${resultadoFinal}</strong></p>` 
+    
     botonFuego.disabled = true 
     botonAgua.disabled = true 
     botonTierra.disabled = true 
