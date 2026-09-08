@@ -1,7 +1,7 @@
 const modalContainer = document.getElementById("modal-container");
 const modalOverlay = document.getElementById("modal-overlay");
 const cartBtn = document.getElementById("cart-btn");
-
+const cartCounter = document.getElementById("cart-counter");
 
 const displayCart = () => {
     modalContainer.innerHTML = "";
@@ -29,47 +29,53 @@ const displayCart = () => {
     modalContainer.append(modalHeater);
 
     //Modal Body
-    cart.forEach((product)=> {
-        const modalBody = document.createElement("div");
-        modalBody.className = "modal-body"
-        modalBody.innerHTML = `
-        <div class="product">
-            <img class="product-img" src="${product.img}" />
-            <div class="product-info">
-                <h4>${product.productName}</h4>
-            </div>
-            <div class="quantity">
-                <span class="quantity-btn-decrese">-</span>
-                <span class="quantity-input">${product.quanty}</span>
-                <span class="quantity-btn-increse">+</span>
-            </div>
-                <div class="price">${product.price * product.quanty}</div>
-                <div class="delete-product">❌</div>
-        </div> 
-        `;     
-        modalContainer.append(modalBody);
+        if (cart.length > 0 ){
+        cart.forEach((product)=> {
+            const modalBody = document.createElement("div");
+            modalBody.className = "modal-body"
+            modalBody.innerHTML = `
+            <div class="product">
+                <img class="product-img" src="${product.img}" />
+                <div class="product-info">
+                    <h4>${product.productName}</h4>
+                </div>
+                <div class="quantity">
+                    <span class="quantity-btn-decrese">-</span>
+                    <span class="quantity-input">${product.quanty}</span>
+                    <span class="quantity-btn-increse">+</span>
+                </div>
+                    <div class="price">${product.price * product.quanty}</div>
+                    <div class="delete-product">❌</div>
+            </div> 
+            `;     
+            modalContainer.append(modalBody);
 
-        const decrese = modalBody.querySelector(".quantity-btn-decrese")
-        decrese.addEventListener("click", () => {
-            if(product.quanty !== 1){
-                product.quanty--;
-                displayCart(); 
-            }
-        })
+            const decrese = modalBody.querySelector(".quantity-btn-decrese")
+            decrese.addEventListener("click", () => {
+                if(product.quanty !== 1){
+                    product.quanty--;
+                    displayCart(); 
+                }
+            })
 
-        const increse = modalBody.querySelector(".quantity-btn-increse");
-        increse.addEventListener("click", () =>{
-            product.quanty++;
-            displayCart();
-        })
+            const increse = modalBody.querySelector(".quantity-btn-increse");
+            increse.addEventListener("click", () =>{
+                product.quanty++;
+                displayCart();
+            })
 
-        //Boton de eliminar
-        const deleteProduct = modalBody.querySelector(".delete-product")
-        deleteProduct.addEventListener("click", ()=> {
-            deleteCartProduct(product.id)
-        })
-    });
-
+            //Boton de eliminar
+            const deleteProduct = modalBody.querySelector(".delete-product")
+            deleteProduct.addEventListener("click", ()=> {
+                deleteCartProduct(product.id)
+            })
+        });
+    }else {
+        const modalText = document.createElement ("h2");
+        modalText.className= "modal-body";
+        modalText.innerText= "Tu carrito esta vacio!"
+        modalContainer.append(modalText)
+    }
     //Modal Footer
     const total = cart.reduce((acc, el) => acc + el.price + el.quanty, 0)
 
@@ -87,5 +93,17 @@ cartBtn.addEventListener("click", displayCart);
 const deleteCartProduct = (id) => {
     const fuondId =  cart.findIndex((element) => element.id == id)
     cart.splice(fuondId, 1)
-    displayCart();
+    displayCart();+
+    displayCartCounter();
+}
+
+const displayCartCounter =()=>{
+    const cartLength = cart.reduce((acc, el) => acc + el.quanty, 0);
+    if(cartLength > 0){
+        cartCounter.style.display = "block";
+        cartCounter.innerText = cartLength;
+    }else {
+        cartCounter.stile.display = "none"
+    }
+   
 }

@@ -22,7 +22,7 @@ const productos =[
         productName: "Vodka Absolute Elix 1L",
         price: 80670,
         quanty: 1,
-        img:"/client/media/absolute.jfif",
+        img:"/client/media/absolute.png",
 
     },
 
