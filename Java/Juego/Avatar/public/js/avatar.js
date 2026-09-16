@@ -1,396 +1,991 @@
-/* Tarea
- function seleccionarPersonajeJugador() {
+const FUEGO = "FUEGO 🔥";
+const AGUA = "AGUA 💧";
+const TIERRA = "TIERRA 🌱";
+const AIRE = "AIRE 💨";
+const VIDAS_INICIALES = 3;
+const seccionSeleccionarPersonaje =
+    document.getElementById("seleccionar-personaje");
 
-    let inputZuko = document.getElementById('zuko')
-    let inputKatara = document.getElementById('katara')
-    let inputAang = document.getElementById('aang')
-    let inputToph = document.getElementById('toph')
+const listaPersonajes =
+    document.getElementById("lista-personajes");
 
-    if (inputZuko.checked) {
-        alert('Seleccionaste a Zuko 🔥')
-    }
-    else if (inputKatara.checked) {
-        alert('Seleccionaste a Katara 💧')
-    }
-    else if (inputAang.checked) {
-        alert('Seleccionaste a Aang 💨')
-    }
-    else if (inputToph.checked) {
-        alert('Seleccionaste a Toph 🌱')
-    }
-    else {
-        alert('Selecciona un personaje')
-    }
-}
+const botonPersonaje =
+    document.getElementById("boton-personaje");
 
-let botonPersonajeJugador = document.getElementById('boton-personaje')
+const botonMostrarCrear =
+    document.getElementById("boton-mostrar-crear");
 
-botonPersonajeJugador.addEventListener('click', seleccionarPersonajeJugador);
+const botonMostrarCreados =
+    document.getElementById("boton-mostrar-creados");
 
-// Variables globales de las secciones y botones
-let sectionSeleccionarAtaque
-let sectionReiniciar
-let botonPersonajeJugador
-let botonReiniciar
+const seccionPersonajesCreados =
+    document.getElementById("personajes-creados");
 
-// Botones de ataque del jugador
-let botonFuego
-let botonAgua
-let botonTierra
-let botonAire
+const listaPersonajesCreados =
+    document.getElementById("lista-personajes-creados");
 
-// Variables para guardar los ataques y las vidas
-let ataqueJugador
-let ataqueEnemigo
-let vidasJugador = 3
-let vidasEnemigo = 3
+const botonVolverPersonajesCreados =
+    document.getElementById("boton-volver-personajes-creados");
 
-// Función principal que arranca el juego
-function iniciarJuego() {
-    sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionReiniciar = document.getElementById('reiniciar')
-    botonPersonajeJugador = document.getElementById('boton-personaje')
-    botonReiniciar = document.getElementById('boton-reiniciar')
+const seccionCrearPersonaje =
+    document.getElementById("crear-personaje");
 
-    botonFuego = document.getElementById('boton-fuego')
-    botonAgua = document.getElementById('boton-agua')
-    botonTierra = document.getElementById('boton-tierra')
-    botonAire = document.getElementById('boton-aire')
+const seccionAtaque =
+    document.getElementById("seleccionar-ataque");
 
-    // Ocultamos las secciones que no se necesitan al principio
-    sectionSeleccionarAtaque.style.display = 'none'
-    sectionReiniciar.style.display = 'none'
+const personajeJugadorElemento =
+    document.getElementById("personaje-jugador");
 
-    // Escuchamos los clics iniciales
-    botonPersonajeJugador.addEventListener('click', seleccionarPersonajeJugador)
-    botonReiniciar.addEventListener('click', reiniciarJuego)
-    
-    // Escuchamos los clics de los ataques
-    botonFuego.addEventListener('click', ataqueFuego)
-    botonAgua.addEventListener('click', ataqueAgua)
-    botonTierra.addEventListener('click', ataqueTierra)
-    botonAire.addEventListener('click', ataqueAire)
-}
+const ataqueEnemigoElemento =
+    document.getElementById("ataque-enemigo");
 
-// Función para seleccionar el personaje
-function seleccionarPersonajeJugador() {
-    let inputZuko = document.getElementById('zuko')
-    let inputKatara = document.getElementById('katara')
-    let inputAang = document.getElementById('aang')
-    let inputToph = document.getElementById('toph')
-    let personajeJugador = document.getElementById('personaje-jugador')
+const vidasJugadorElemento =
+    document.getElementById("vidas-jugador");
 
-    let seSeleccionoPersonaje = true
+const vidasEnemigoElemento =
+    document.getElementById("vidas-enemigo");
 
-    if (inputZuko.checked) {
-        personajeJugador.innerHTML = 'Seleccionaste a Zuko 🔥'
-    } else if (inputKatara.checked) {
-        personajeJugador.innerHTML = 'Seleccionaste a Katara 💧'
-    } else if (inputAang.checked) {
-        personajeJugador.innerHTML = 'Seleccionaste a Aang 💨'
-    } else if (inputToph.checked) {
-        personajeJugador.innerHTML = 'Seleccionaste a Toph 🌱'
-    } else {
-        personajeJugador.innerHTML = 'Selecciona un personaje'
-        seSeleccionoPersonaje = false
-    }
+const botonFuego =
+    document.getElementById("boton-fuego");
 
-    if (seSeleccionoPersonaje) {
-        sectionSeleccionarAtaque.style.display = 'block'
-    }
-}
+const botonAgua =
+    document.getElementById("boton-agua");
 
-// Ataques del jugador
-function ataqueFuego() {
-    ataqueJugador = 'FUEGO 🔥'
-    ataqueAleatorioEnemigo()
-}
-function ataqueAgua() {
-    ataqueJugador = 'AGUA 💧'
-    ataqueAleatorioEnemigo()
-}
-function ataqueTierra() {
-    ataqueJugador = 'TIERRA 🌱'
-    ataqueAleatorioEnemigo()
-}
-function ataqueAire() {
-    ataqueJugador = 'AIRE 💨'
-    ataqueAleatorioEnemigo()
-}
+const botonTierra =
+    document.getElementById("boton-tierra");
 
-// Ataque aleatorio del enemigo
-function aleatorio(min, max){
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
+const botonAire =
+    document.getElementById("boton-aire");
 
-function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1, 4)
-    
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'FUEGO 🔥'
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'AGUA 💧'
-    } else if (ataqueAleatorio == 3) {
-        ataqueEnemigo = 'TIERRA 🌱'
-    } else {
-        ataqueEnemigo = 'AIRE 💨'
+const seccionMensajes =
+    document.getElementById("mensajes");
+
+const seccionReiniciar =
+    document.getElementById("reiniciar");
+
+const botonReiniciar =
+    document.getElementById("boton-reiniciar");
+
+
+// ==========================================
+// PERSONAJE ELEGIDO
+// ==========================================
+
+const personajeElegidoElemento =
+    document.createElement("p");
+
+personajeElegidoElemento.id =
+    "personaje-elegido";
+
+seccionSeleccionarPersonaje.insertBefore(
+    personajeElegidoElemento,
+    document.getElementById("botones-personaje")
+);
+
+
+// ==========================================
+// CLASE AVATAR
+// ==========================================
+
+class Avatar {
+
+    constructor(nombre, poder, imagen) {
+
+        this.nombre = nombre;
+        this.poder = poder;
+        this.imagen = imagen;
+
     }
 
-    combate()
 }
 
-// NUEVA FUNCIÓN: Lógica de combate (Quién gana a quién)
-function combate() {
-    let spanVidaJugador = document.getElementById('vidas-jugador') // Mantengo tu id "vidas" del HTML
-    let spanVidaEnemigo = document.getElementById('vidas-enemigo')
-    let resultado
 
-    if (ataqueJugador == ataqueEnemigo) {
-        resultado = "¡EMPATE! 🤝"
-    } else if (
-        (ataqueJugador == 'FUEGO 🔥' && ataqueEnemigo == 'TIERRA 🌱') ||
-        (ataqueJugador == 'AGUA 💧' && ataqueEnemigo == 'FUEGO 🔥') ||
-        (ataqueJugador == 'TIERRA 🌱' && ataqueEnemigo == 'AIRE 💨') ||
-        (ataqueJugador == 'AIRE 💨' && ataqueEnemigo == 'AGUA 💧')
+// ==========================================
+// PERSONAJES ORIGINALES
+// ==========================================
+
+const aang =
+    new Avatar(
+        "Aang",
+        AIRE,
+        "./assets/aang.jpg"
+    );
+
+const katara =
+    new Avatar(
+        "Katara",
+        AGUA,
+        "./assets/katara.jpg"
+    );
+
+const zuko =
+    new Avatar(
+        "Zuko",
+        FUEGO,
+        "./assets/zuko.jpg"
+    );
+
+const toph =
+    new Avatar(
+        "Toph",
+        TIERRA,
+        "./assets/toph.jpg"
+    );
+
+
+// ==========================================
+// LISTA DE PERSONAJES
+// ==========================================
+
+let avatares = [
+    aang,
+    katara,
+    zuko,
+    toph
+];
+
+
+// ==========================================
+// CARGAR PERSONAJES CREADOS
+// ==========================================
+
+const personajesGuardados =
+    JSON.parse(
+        localStorage.getItem("avatares")
+    );
+
+if (personajesGuardados) {
+
+    personajesGuardados.forEach(
+        personaje => {
+
+            avatares.push(
+                new Avatar(
+                    personaje.nombre,
+                    personaje.poder,
+                    personaje.imagen
+                )
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// VARIABLES DEL COMBATE
+// ==========================================
+
+let avatarJugador = null;
+let avatarEnemigo = null;
+
+let vidasJugador =
+    VIDAS_INICIALES;
+
+let vidasEnemigo =
+    VIDAS_INICIALES;
+
+
+// ==========================================
+// FUNCIÓN PARA COLOR DE TARJETA
+// ==========================================
+
+function aplicarColorPoder(
+    tarjeta,
+    personaje
+) {
+
+    if (personaje.poder === FUEGO) {
+
+        tarjeta.classList.add(
+            "tarjeta-fuego"
+        );
+
+    }
+
+    else if (personaje.poder === AGUA) {
+
+        tarjeta.classList.add(
+            "tarjeta-agua"
+        );
+
+    }
+
+    else if (personaje.poder === TIERRA) {
+
+        tarjeta.classList.add(
+            "tarjeta-tierra"
+        );
+
+    }
+
+    else if (personaje.poder === AIRE) {
+
+        tarjeta.classList.add(
+            "tarjeta-aire"
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// MOSTRAR PERSONAJES ORIGINALES
+// ==========================================
+
+function mostrarPersonajes() {
+
+    listaPersonajes.innerHTML = "";
+
+
+    for (let i = 0; i < 4; i++) {
+
+        const personaje =
+            avatares[i];
+
+
+        const tarjeta =
+            document.createElement("div");
+
+
+        tarjeta.classList.add(
+            "tarjeta-personaje"
+        );
+
+
+        aplicarColorPoder(
+            tarjeta,
+            personaje
+        );
+
+
+        tarjeta.innerHTML = `
+
+            <img
+                src="${personaje.imagen}"
+                alt="${personaje.nombre}"
+            >
+
+            <h3>
+                ${personaje.nombre}
+            </h3>
+
+            <p>
+                ${personaje.poder}
+            </p>
+
+        `;
+
+
+        tarjeta.addEventListener(
+            "click",
+            () => {
+
+                avatarJugador =
+                    personaje;
+
+                mostrarPersonajeElegido();
+
+            }
+        );
+
+
+        listaPersonajes.appendChild(
+            tarjeta
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// MOSTRAR PERSONAJE ELEGIDO
+// ==========================================
+
+function mostrarPersonajeElegido() {
+
+    if (!avatarJugador) {
+
+        personajeElegidoElemento.textContent =
+            "Ningún personaje ha sido elegido";
+
+        personajeElegidoElemento.classList.remove(
+            "personaje-seleccionado"
+        );
+
+        return;
+
+    }
+
+
+    personajeElegidoElemento.textContent =
+        `Personaje elegido: ${avatarJugador.nombre}`;
+
+    personajeElegidoElemento.classList.add(
+        "personaje-seleccionado"
+    );
+
+}
+
+
+// ==========================================
+// MOSTRAR PERSONAJES CREADOS
+// ==========================================
+
+function renderizarPersonajesCreados() {
+
+    listaPersonajesCreados.innerHTML = "";
+
+
+    const personajesCreados =
+        avatares.slice(4);
+
+
+    if (personajesCreados.length === 0) {
+
+        listaPersonajesCreados.innerHTML = `
+            <p>
+                No hay personajes creados todavía.
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    personajesCreados.forEach(
+        personaje => {
+
+            const tarjeta =
+                document.createElement("div");
+
+
+            tarjeta.classList.add(
+                "tarjeta-personaje"
+            );
+
+
+            aplicarColorPoder(
+                tarjeta,
+                personaje
+            );
+
+
+            tarjeta.innerHTML = `
+
+                <img
+                    src="${personaje.imagen}"
+                    alt="${personaje.nombre}"
+                >
+
+                <h3>
+                    ${personaje.nombre}
+                </h3>
+
+                <p>
+                    ${personaje.poder}
+                </p>
+
+            `;
+
+
+            const botonEliminar =
+                document.createElement("button");
+
+
+            botonEliminar.textContent =
+                "✕";
+
+
+            botonEliminar.classList.add(
+                "boton-eliminar"
+            );
+
+
+            botonEliminar.addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+
+                    const indiceReal =
+                        avatares.indexOf(
+                            personaje
+                        );
+
+
+                    if (indiceReal !== -1) {
+
+                        avatares.splice(
+                            indiceReal,
+                            1
+                        );
+
+
+                        localStorage.setItem(
+                            "avatares",
+                            JSON.stringify(
+                                avatares.slice(4)
+                            )
+                        );
+
+
+                        renderizarPersonajesCreados();
+
+                    }
+
+                }
+            );
+
+
+            tarjeta.appendChild(
+                botonEliminar
+            );
+
+
+            tarjeta.addEventListener(
+                "click",
+                () => {
+
+                    avatarJugador =
+                        personaje;
+
+                    mostrarPersonajeElegido();
+
+                    volverSeleccionPersonaje();
+
+                }
+            );
+
+
+            listaPersonajesCreados.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// VOLVER A SELECCIÓN
+// ==========================================
+
+function volverSeleccionPersonaje() {
+
+    seccionSeleccionarPersonaje.style.display =
+        "block";
+
+    seccionPersonajesCreados.style.display =
+        "none";
+
+    seccionCrearPersonaje.style.display =
+        "none";
+
+    seccionAtaque.style.display =
+        "none";
+
+    seccionMensajes.style.display =
+        "none";
+
+    seccionReiniciar.style.display =
+        "none";
+
+
+    mostrarPersonajes();
+
+    mostrarPersonajeElegido();
+
+}
+
+
+// ==========================================
+// MOSTRAR CREAR PERSONAJE
+// ==========================================
+
+function mostrarCrearPersonaje() {
+
+    seccionSeleccionarPersonaje.style.display =
+        "none";
+
+    seccionPersonajesCreados.style.display =
+        "none";
+
+    seccionCrearPersonaje.style.display =
+        "block";
+
+    seccionAtaque.style.display =
+        "none";
+
+    seccionMensajes.style.display =
+        "none";
+
+    seccionReiniciar.style.display =
+        "none";
+
+
+    // ==========================================
+    // LIMPIAR EL NOMBRE ANTERIOR
+    // ==========================================
+
+    document.getElementById(
+        "nombre-personaje"
+    ).value = "";
+
+
+    // ==========================================
+    // DESMARCAR EL PODER ANTERIOR
+    // ==========================================
+
+    const poderes =
+        document.querySelectorAll(
+            '#crear-personaje input[type="radio"]'
+        );
+
+
+    poderes.forEach(
+        poder => {
+
+            poder.checked = false;
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// MOSTRAR PERSONAJES CREADOS
+// ==========================================
+
+function mostrarSeccionPersonajesCreados() {
+
+    seccionSeleccionarPersonaje.style.display =
+        "none";
+
+    seccionPersonajesCreados.style.display =
+        "block";
+
+    seccionCrearPersonaje.style.display =
+        "none";
+
+    seccionAtaque.style.display =
+        "none";
+
+    seccionMensajes.style.display =
+        "none";
+
+    seccionReiniciar.style.display =
+        "none";
+
+
+    renderizarPersonajesCreados();
+
+}
+
+
+// ==========================================
+// INICIAR COMBATE
+// ==========================================
+
+function iniciarCombate() {
+
+    if (!avatarJugador) {
+
+        alert(
+            "Primero selecciona un personaje."
+        );
+
+        return;
+
+    }
+
+
+    vidasJugador =
+        VIDAS_INICIALES;
+
+    vidasEnemigo =
+        VIDAS_INICIALES;
+
+
+    vidasJugadorElemento.textContent =
+        vidasJugador;
+
+    vidasEnemigoElemento.textContent =
+        vidasEnemigo;
+
+
+    elegirEnemigo();
+
+}
+
+
+// ==========================================
+// ELEGIR ENEMIGO
+// ==========================================
+
+function elegirEnemigo() {
+
+    const posiblesEnemigos =
+        avatares.filter(
+            personaje =>
+                personaje !== avatarJugador
+        );
+
+
+    const indice =
+        Math.floor(
+            Math.random() *
+            posiblesEnemigos.length
+        );
+
+
+    avatarEnemigo =
+        posiblesEnemigos[indice];
+
+
+    vidasEnemigo =
+        VIDAS_INICIALES;
+
+
+    vidasEnemigoElemento.textContent =
+        vidasEnemigo;
+
+
+    mostrarPantallaAtaque();
+
+}
+
+
+// ==========================================
+// MOSTRAR PANTALLA ATAQUE
+// ==========================================
+
+function mostrarPantallaAtaque() {
+
+    seccionSeleccionarPersonaje.style.display =
+        "none";
+
+    seccionPersonajesCreados.style.display =
+        "none";
+
+    seccionCrearPersonaje.style.display =
+        "none";
+
+    seccionAtaque.style.display =
+        "block";
+
+    seccionMensajes.style.display =
+        "none";
+
+    seccionReiniciar.style.display =
+        "none";
+
+
+    // ==========================================
+    // MOSTRAR TU PERSONAJE
+    // ==========================================
+
+    personajeJugadorElemento.textContent =
+        `Tu personaje: ${avatarJugador.nombre}`;
+
+
+    // ==========================================
+    // OCULTAR AL ENEMIGO
+    // ==========================================
+
+    ataqueEnemigoElemento.textContent =
+        "";
+
+    ataqueEnemigoElemento.style.display =
+        "none";
+
+
+    // ==========================================
+    // VIDAS
+    // ==========================================
+
+    vidasJugadorElemento.textContent =
+        vidasJugador;
+
+    vidasEnemigoElemento.textContent =
+        vidasEnemigo;
+
+}
+
+
+// ==========================================
+// ATAQUE ALEATORIO
+// ==========================================
+
+function ataqueAleatorio() {
+
+    const ataques = [
+        FUEGO,
+        AGUA,
+        TIERRA,
+        AIRE
+    ];
+
+
+    const indice =
+        Math.floor(
+            Math.random() *
+            ataques.length
+        );
+
+
+    return ataques[indice];
+
+}
+
+
+// ==========================================
+// REALIZAR ATAQUE
+// ==========================================
+
+function realizarAtaque(
+    ataqueJugador
+) {
+
+    const ataqueEnemigo =
+        ataqueAleatorio();
+
+
+    let resultado = "";
+
+
+    if (
+        ataqueJugador ===
+        ataqueEnemigo
     ) {
-        resultado = "¡GANASTE ESTA RONDA! 🎉"
-        vidasEnemigo--
-        spanVidaEnemigo.innerHTML = vidasEnemigo
-    } else {
-        resultado = "¡PERDISTE ESTA RONDA! 😢"
-        vidasJugador--
-        spanVidaJugador.innerHTML = vidasJugador
+
+        resultado =
+            "¡Empate! ⚔️";
+
     }
 
-    crearMensaje(resultado)
-    revisarVidas()
-}
-
-// Función para mostrar el historial
-function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('mensajes')
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = `Atacaste con ${ataqueJugador}, el enemigo atacó con ${ataqueEnemigo}. ${resultado}`
-    sectionMensajes.appendChild(parrafo)
-}
-
-// NUEVA FUNCIÓN: Revisa si alguien se quedó sin vidas para terminar el juego
-function revisarVidas() {
-    if (vidasJugador == 0) {
-        crearMensajeFinal("Lo siento... ¡HAS PERDIDO EL COMBATE! 💀")
-    } else if (vidasEnemigo == 0) {
-        crearMensajeFinal("¡FELICITACIONES! ¡HAS GANADO EL COMBATE! 🏆")
-    }
-}
-
-// NUEVA FUNCIÓN: Bloquea los ataques y muestra el botón reiniciar
-function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('mensajes')
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = `<strong>${resultadoFinal}</strong>`
-    sectionMensajes.appendChild(parrafo)
-
-    // Deshabilitamos los botones de ataque para que no sigan atacando
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
-    botonAire.disabled = true
-
-    // Mostramos el botón de reiniciar
-    sectionReiniciar.style.display = 'block'
-}
-
-// NUEVA FUNCIÓN: Resetea el juego por completo
-function reiniciarJuego() {
-
-    // Recargamos la página web para limpiar todo de forma rápida y efectiva
-
-    location.reload()
-}
-
-// ESCUCHADOR GLOBAL
-
-window.addEventListener('load', iniciarJuego)*/
-
-//=====================================
-// NUEVO FORMATO A PARTIR DE CLASE 3
-
-// ATAQUES
-const ataque = [ 
-    'FUEGO 🔥',
-    'AGUA 💧',
-    'TIERRA 🌱',
-    'AIRE 💨'
-]
-
-// VIDAS
-const VIDAS_INICIALES = 3
-
-// ELEMENTOS DEL HTML
-
-// Secciones
-const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-const sectionReiniciar = document.getElementById('reiniciar')
-const sectionSeleccionarPersonaje = document.getElementById('seleccionar-personaje')
-
-// Botones
-const botonPersonajeJugador = document.getElementById('boton-personaje')
-const botonReiniciar = document.getElementById('boton-reiniciar')
-
-// Botones Ataques
-const botonFuego = document.getElementById('boton-fuego')
-const botonAgua = document.getElementById('boton-agua')
-const botonTierra = document.getElementById('boton-tierra')
-const botonAire = document.getElementById('boton-aire')
-
-// Personajes
-const inputZuko = document.getElementById('zuko') 
-const inputKatara = document.getElementById('katara') 
-const inputAang = document.getElementById('aang') 
-const inputToph = document.getElementById('toph')
-
-// Marcador de VIDAS
-const spanVidaJugador = document.getElementById('vidas-jugador') 
-const spanVidaEnemigo = document.getElementById('vidas-enemigo')
-
-// Mensajes
-const sectionMensajes = document.getElementById('mensajes')
-
-// VARIABLES
-let ataqueJugador
-let ataqueEnemigo
-
-let vidasJugador = VIDAS_INICIALES
-let vidasEnemigo = VIDAS_INICIALES
-
-// Inicio Juego
-
-function iniciarJuego() {
-// Oultamos secciones no necesarias
-    sectionSeleccionarAtaque.style.display = 'none'
-    sectionReiniciar.style.display = 'none'
-    sectionSeleccionarPersonaje.style.display = 'block'
-
-// Seleccion del personaje
-    botonPersonajeJugador.addEventListener('click', seleccionarPersonajeJugador)
-
-// Botón para reiniciar 
-    botonReiniciar.addEventListener( 'click', reiniciarJuego)
-
-// Botones de ataque 
-    botonFuego.addEventListener( 'click', () => seleccionarAtaque(ataque[0]) )
-    botonAgua.addEventListener( 'click', () => seleccionarAtaque(ataque[1]) )
-    botonTierra.addEventListener( 'click', () => seleccionarAtaque(ataque[2]) )
-    botonAire.addEventListener( 'click', () => seleccionarAtaque(ataque[3]) ) 
-}
-
-// SELECCION DEL PERSONAJE
-function seleccionarPersonajeJugador() { 
-    const personajeJugador = document.getElementById('personaje-jugador') 
-    const sectionMensajes = document.getElementById('mensajes')
-    
-    let personajeSeleccionado = '' 
-    if (inputZuko.checked) { 
-        personajeSeleccionado = 'zuko 🔥' 
-    } 
-    else if (inputKatara.checked) { 
-        personajeSeleccionado = 'katara 💧' 
-    } 
-    else if (inputAang.checked) { 
-        personajeSeleccionado = 'aang 💨' 
-    } 
-    else if (inputToph.checked) { 
-        personajeSeleccionado = 'toph 🌱' 
-    } 
-    else { personajeJugador.innerHTML = 'Selecciona un personaje' 
-        return } 
-    personajeJugador.innerHTML = `Seleccionaste a ${personajeSeleccionado}` 
-    
-    sectionMensajes.innerHTML = '<p>⚡ ¡Elige un ataque para iniciar el combate! ⚡</p>'
-    
-    sectionSeleccionarAtaque.style.display = 'block' 
-    sectionSeleccionarPersonaje.style.display = 'none'
-}
-
-// SELECCIÓN DEL ATAQUE
-function seleccionarAtaque(ataque) {
-     ataqueJugador = ataque 
-     ataqueAleatorioEnemigo() 
-}
-
-// ATAQUE ALEATORIO DEL ENEMIGO
-function ataqueAleatorioEnemigo() {
-    ataqueEnemigo = ataque[aleatorio(0, ataque.length - 1)]
-    combate()
-}
-
-// NÚMERO ALEATORIO
-function aleatorio(min, max) { 
-    return Math.floor( 
-        Math.random() * (max - min + 1) + min ) 
-}
-
-// COMBATE
-function combate() { 
-    let resultado 
-    if (ataqueJugador === ataqueEnemigo) { 
-        resultado = '¡EMPATE! 🤝' 
-    } 
     else if (
-        (ataqueJugador === 'FUEGO 🔥' && ataqueEnemigo === 'TIERRA 🌱') || 
-        (ataqueJugador === 'AGUA 💧' && ataqueEnemigo === 'FUEGO 🔥') || 
-        (ataqueJugador === 'TIERRA 🌱' && ataqueEnemigo === 'AIRE 💨') || 
-        (ataqueJugador === 'AIRE 💨' && ataqueEnemigo === 'AGUA 💧')
-    ){
-        resultado = '¡GANASTE ESTA RONDA! 🎉' 
-        vidasEnemigo-- 
-        spanVidaEnemigo.innerHTML = vidasEnemigo
-    }
-    else { 
-        resultado = '¡PERDISTE ESTA RONDA! 😢' 
-        vidasJugador-- 
-        spanVidaJugador.innerHTML = vidasJugador 
-    } 
-    crearMensaje(resultado) 
-    revisarVidas() 
-}
 
-// MOSTRAR SOLO EL ÚLTIMO MENSAJE DE CADA RONDA
-function crearMensaje(resultado) { 
-    const parrafo = document.getElementById('mensajes')
-    sectionMensajes.innerHTML = `<p>Atacaste con ${ataqueJugador}, el enemigo atacó con ${ataqueEnemigo}. ${resultado}</p>` 
-}
-
-// REVISAR VIDAS
-function revisarVidas(){
-    if (vidasJugador === 0) {
-        crearMensajeFinal(
-            'Lo siento...¡HAS PERDIDO EL COMBATE! ☠️'
+        (
+            ataqueJugador === FUEGO &&
+            ataqueEnemigo === TIERRA
         )
-    }
-    else if (vidasEnemigo === 0){
-        crearMensajeFinal(
-            '¡FELICITACIONES! ¡HAS GANADO EL COMBATE! 🏆'
+
+        ||
+
+        (
+            ataqueJugador === AGUA &&
+            ataqueEnemigo === FUEGO
         )
+
+        ||
+
+        (
+            ataqueJugador === TIERRA &&
+            ataqueEnemigo === AIRE
+        )
+
+        ||
+
+        (
+            ataqueJugador === AIRE &&
+            ataqueEnemigo === AGUA
+        )
+
+    ) {
+
+        vidasEnemigo--;
+
+        resultado =
+            "¡Ganaste esta ronda! 🎉";
+
     }
+
+    else {
+
+        vidasJugador--;
+
+        resultado =
+            "¡Perdiste esta ronda! 😢";
+
+    }
+
+
+    vidasJugadorElemento.textContent =
+        vidasJugador;
+
+    vidasEnemigoElemento.textContent =
+        vidasEnemigo;
+
+
+    mostrarResultadoRonda(
+        resultado,
+        ataqueJugador,
+        ataqueEnemigo
+    );
+
 }
 
-// FINAL DEL JUEGO
-function crearMensajeFinal(resultadoFinal){
-    const parrafo = document.createElement('p')
-    sectionMensajes.innerHTML = `<p><strong>${resultadoFinal}</strong></p>` 
-    
-    botonFuego.disabled = true 
-    botonAgua.disabled = true 
-    botonTierra.disabled = true 
-    botonAire.disabled = true 
-    sectionReiniciar.style.display = 'block'
+
+// ==========================================
+// MOSTRAR RESULTADO
+// ==========================================
+
+function mostrarResultadoRonda(
+    resultado,
+    ataqueJugador,
+    ataqueEnemigo
+) {
+
+    seccionAtaque.style.display =
+        "none";
+
+    seccionMensajes.style.display =
+        "block";
+
+
+    seccionMensajes.innerHTML = `
+
+        <h2>
+            ⚔️ Combate
+        </h2>
+
+        <div id="resultado-ronda">
+
+            <div class="resultado-emojis">
+                ${ataqueJugador}
+                ⚔️
+                ${ataqueEnemigo}
+            </div>
+
+            <p>
+                ${resultado}
+            </p>
+
+            <p>
+                ❤️ Tus vidas:
+                ${vidasJugador}
+            </p>
+
+            <p>
+                ❤️ Vidas del enemigo:
+                ${vidasEnemigo}
+            </p>
+
+            <button id="boton-reiniciar-resultado">
+                🔄 Reiniciar
+            </button>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById(
+            "boton-reiniciar-resultado"
+        )
+        .addEventListener(
+            "click",
+            volverSeleccionPersonaje
+        );
+
 }
 
-// REINICIAR
-function reiniciarJuego() { 
-    location.reload() 
-}
 
-//Arranque juego
-window.addEventListener('load', iniciarJuego)
+// ==========================================
+// BOTONES
+// ==========================================
+
+botonPersonaje.addEventListener(
+    "click",
+    iniciarCombate
+);
+
+
+botonMostrarCrear.addEventListener(
+    "click",
+    mostrarCrearPersonaje
+);
+
+
+botonMostrarCreados.addEventListener(
+    "click",
+    mostrarSeccionPersonajesCreados
+);
+
+
+botonVolverPersonajesCreados.addEventListener(
+    "click",
+    volverSeleccionPersonaje
+);
+
+
+botonFuego.addEventListener(
+    "click",
+    () => realizarAtaque(FUEGO)
+);
+
+
+botonAgua.addEventListener(
+    "click",
+    () => realizarAtaque(AGUA)
+);
+
+
+botonTierra.addEventListener(
+    "click",
+    () => realizarAtaque(TIERRA)
+);
+
+
+botonAire.addEventListener(
+    "click",
+    () => realizarAtaque(AIRE)
+);
+
+
+botonReiniciar.addEventListener(
+    "click",
+    volverSeleccionPersonaje
+);
+
+
+// ==========================================
+// INICIAR
+// ==========================================
+
+mostrarPersonajes();
+
+mostrarPersonajeElegido();
+
+
+// ==========================================
+// ASEGURAR PANTALLA INICIAL
+// ==========================================
+
+seccionSeleccionarPersonaje.style.display =
+    "block";
+
+seccionPersonajesCreados.style.display =
+    "none";
+
+seccionCrearPersonaje.style.display =
+    "none";
+
+seccionAtaque.style.display =
+    "none";
+
+seccionMensajes.style.display =
+    "none";
+
+seccionReiniciar.style.display =
+    "none";
+

@@ -1,131 +1,332 @@
 <!DOCTYPE html>
-
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>LA LEYENDA DE AANG: AVATAR</title>
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="./css/estilos.css"
+    >
 
-    <link rel="stylesheet" href="./css/estilos.css">
 </head>
+
 
 <body>
 
-    <!-- Título principal -->
-    <h1>AVATAR 🔥 💧 🌱 💨</h1>
+    <!-- ==========================================
+         TÍTULO
+    =========================================== -->
+
+    <header>
+
+        <h1>
+            🔥 💧 LA LEYENDA DE AANG: AVATAR 💨 🌱
+        </h1>
+
+    </header>
 
 
-    <!-- Reglas del juego -->
-    <details>
-        <summary>📜 Ver reglas del juego</summary>
+    <!-- ==========================================
+         SELECCIONAR PERSONAJE
+    =========================================== -->
 
-        <h3>¿Cómo jugar?</h3>
-
-        <p>Primero debes seleccionar un personaje para comenzar la batalla.</p>
-
-        <p>Tanto el jugador como el enemigo comienzan con 3 vidas.</p>
-
-        <p>En cada ronda ambos realizarán un ataque.</p>
-
-        <p>Si ambos utilizan el mismo ataque, la ronda termina en empate.</p>
-
-        <h3>Ventajas de los ataques</h3>
-
-        <ul>
-            <li>🔥 Fuego vence a 🌱 Tierra</li>
-            <li>💧 Agua vence a 🔥 Fuego</li>
-            <li>🌱 Tierra vence a 💨 Aire</li>
-            <li>💨 Aire vence a 💧 Agua</li>
-        </ul>
-
-        <p>Gana el jugador que logre dejar al enemigo sin vidas.</p>
-    </details>
-
-
-    <!-- Selección de personaje -->
     <section id="seleccionar-personaje">
 
-        <h2>⚔️ Elige tu personaje ⚔️</h2>
+        <h2>
+            Elige tu personaje
+        </h2>
 
-        <div class="personajes">
 
-            <!-- Zuko -->
-            <label class="personaje-card fuego" for="zuko">
-                <input type="radio" name="personaje" id="zuko">
-                <span class="elemento">🔥</span>
-                <span class="nombre-personaje">Zuko</span>
-                <span class="elemento-nombre">FUEGO</span>
-            </label>
+        <div id="lista-personajes">
+        </div>
 
-            <!-- Katara -->
-            <label class="personaje-card agua" for="katara">
-                <input type="radio" name="personaje" id="katara">
-                <span class="elemento">💧</span>
-                <span class="nombre-personaje">Katara</span>
-                <span class="elemento-nombre">AGUA</span>
-            </label>
 
-            <!-- Aang -->
-            <label class="personaje-card aire" for="aang">
-                <input type="radio" name="personaje" id="aang">
-                <span class="elemento">💨</span>
-                <span class="nombre-personaje">Aang</span>
-                <span class="elemento-nombre">AIRE</span>
-            </label>
+        <!-- ==========================================
+             PERSONAJE ELEGIDO
+        =========================================== -->
 
-            <!-- Toph -->
-            <label class="personaje-card tierra" for="toph">
-                <input type="radio" name="personaje" id="toph">
-                <span class="elemento">🌱</span>
-                <span class="nombre-personaje">Toph</span>
-                <span class="elemento-nombre">TIERRA</span>
-            </label>
+        <!-- avatar.js coloca aquí:
+             "Ningún personaje ha sido elegido"
+             o
+             "Personaje elegido: Zuko"
+        -->
+
+
+        <!-- ==========================================
+             BOTONES DE PERSONAJE
+        =========================================== -->
+
+        <div id="botones-personaje">
+
+            <button id="boton-personaje">
+                Seleccionar personaje
+            </button>
+
+
+            <button id="boton-mostrar-crear">
+                ➕ Crear nuevo personaje
+            </button>
+
+
+            <button id="boton-mostrar-creados">
+                👤 Personajes creados
+            </button>
 
         </div>
 
-        <button id="boton-personaje">⚡ Seleccionar personaje</button>
 
-        <p id="personaje-jugador"></p>
+        <!-- ==========================================
+             REGLAS DEL JUEGO
+        =========================================== -->
 
-        <p id="ataque-enemigo"></p>
+        <details id="reglas">
+
+            <summary>
+                📜 Reglas del juego
+            </summary>
+
+
+            <div id="contenido-reglas">
+
+                <p>
+                    🔥 Fuego vence a 🌱 Tierra
+                </p>
+
+                <p>
+                    💧 Agua vence a 🔥 Fuego
+                </p>
+
+                <p>
+                    🌱 Tierra vence a 💨 Aire
+                </p>
+
+                <p>
+                    💨 Aire vence a 💧 Agua
+                </p>
+
+                <p>
+                    ⚔️ Si ambos utilizan el mismo poder,
+                    hay empate.
+                </p>
+
+            </div>
+
+        </details>
 
     </section>
 
 
-    <!-- Selección de ataque -->
+    <!-- ==========================================
+         PERSONAJES CREADOS
+         OCULTO AL INICIO
+    =========================================== -->
+
+    <section
+        id="personajes-creados"
+        style="display: none;"
+    >
+
+        <h2>
+            👤 Personajes creados
+        </h2>
+
+
+        <div id="lista-personajes-creados">
+        </div>
+
+
+        <button id="boton-volver-personajes-creados">
+            ↩️ Volver
+        </button>
+
+    </section>
+
+
+    <!-- ==========================================
+         CREAR PERSONAJE
+         OCULTO AL INICIO
+    =========================================== -->
+
+    <section
+        id="crear-personaje"
+        style="display: none;"
+    >
+
+        <h2>
+            ➕ Crear nuevo personaje
+        </h2>
+
+
+        <label for="nombre-personaje">
+            Nombre del personaje:
+        </label>
+
+
+        <input
+            type="text"
+            id="nombre-personaje"
+            placeholder="Escribe un nombre"
+        >
+
+
+        <h3>
+            Elige su poder:
+        </h3>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="poder"
+                value="FUEGO 🔥"
+            >
+
+            🔥 Fuego
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="poder"
+                value="AGUA 💧"
+            >
+
+            💧 Agua
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="poder"
+                value="TIERRA 🌱"
+            >
+
+            🌱 Tierra
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="poder"
+                value="AIRE 💨"
+            >
+
+            💨 Aire
+
+        </label>
+
+
+        <br>
+
+
+        <button id="boton-crear-personaje">
+            💾 Guardar personaje
+        </button>
+
+
+        <button id="boton-volver-personajes">
+            ↩️ Volver
+        </button>
+
+
+        <p id="mensaje-personaje-creado"></p>
+
+    </section>
+
+
+    <!-- ==========================================
+         SELECCIONAR ATAQUE
+    =========================================== -->
+
     <section id="seleccionar-ataque">
 
-        <h2>⚔️ Elige tu ataque ⚔️</h2>
+        <h2>
+            ⚔️ Elige tu ataque
+        </h2>
 
-        <div class="vidas">
 
-            <p>❤️ Tu personaje tiene <span id="vidas-jugador">3</span> vidas</p>
+        <div id="datos-combate">
 
-            <p>💀 El personaje enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+            <div id="personaje-jugador">
+            </div>
+
+
+            <div id="ataque-enemigo">
+            </div>
 
         </div>
 
-        <div class="ataques">
 
-            <button id="boton-fuego" class="ataque fuego">
+        <div id="vidas">
+
+            <p>
+                ❤️ Vidas del jugador:
+                <span id="vidas-jugador">3</span>
+            </p>
+
+
+            <p>
+                ❤️ Vidas del enemigo:
+                <span id="vidas-enemigo">3</span>
+            </p>
+
+        </div>
+
+
+        <h3>
+            Selecciona tu ataque:
+        </h3>
+
+
+        <div id="botones-ataque">
+
+            <button
+                id="boton-fuego"
+                class="ataque"
+            >
                 🔥 Fuego
             </button>
 
-            <button id="boton-agua" class="ataque agua">
+
+            <button
+                id="boton-agua"
+                class="ataque"
+            >
                 💧 Agua
             </button>
 
-            <button id="boton-tierra" class="ataque tierra">
+
+            <button
+                id="boton-tierra"
+                class="ataque"
+            >
                 🌱 Tierra
             </button>
 
-            <button id="boton-aire" class="ataque aire">
+
+            <button
+                id="boton-aire"
+                class="ataque"
+            >
                 💨 Aire
             </button>
 
@@ -134,15 +335,28 @@
     </section>
 
 
-    <!-- Mensajes -->
+    <!-- ==========================================
+         MENSAJES / RESULTADO
+    =========================================== -->
+
     <section id="mensajes">
 
-        <p>¡Elige un personaje para iniciar la batalla!</p>
+        <h2>
+            ⚔️ Combate
+        </h2>
+
+
+        <p>
+            Selecciona un personaje para comenzar.
+        </p>
 
     </section>
 
 
-    <!-- Reinicio -->
+    <!-- ==========================================
+         REINICIAR
+    =========================================== -->
+
     <section id="reiniciar">
 
         <button id="boton-reiniciar">
@@ -152,8 +366,14 @@
     </section>
 
 
-    <!-- JavaScript -->
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
     <script src="./js/avatar.js"></script>
 
+    <script src="./js/personaje-nuevo.js"></script>
+
 </body>
+
 </html>

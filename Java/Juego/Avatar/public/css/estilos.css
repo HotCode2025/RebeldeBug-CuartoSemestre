@@ -1,4 +1,6 @@
-/* FUENTES Y CONFIGURACIÓN GENERAL */
+/* ==========================================
+   CONFIGURACIÓN GENERAL
+========================================== */
 
 * {
     box-sizing: border-box;
@@ -6,126 +8,632 @@
 
 body {
     margin: 0;
-    padding: 25px;
+    padding: 0;
+    min-height: 100vh;
 
-    background:
-        radial-gradient(circle at top, #30305c 0%, #1e1e2f 45%, #11111d 100%);
+    font-family: Arial, Helvetica, sans-serif;
 
     color: white;
-
-    font-family: "Kalam", cursive;
-
     text-align: center;
 
-    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 70, 20, 0.45),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(40, 130, 255, 0.35),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 75% 80%,
+            rgba(40, 190, 100, 0.35),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 25% 80%,
+            rgba(255, 255, 255, 0.25),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 55% 45%,
+            rgba(255, 120, 30, 0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #160c0b,
+            #552018,
+            #152b2a,
+            #162a42,
+            #0d1717
+        );
+
+    background-size:
+        180% 180%,
+        170% 170%,
+        180% 180%,
+        160% 160%,
+        170% 170%,
+        300% 300%;
+
+    animation:
+        fondoLava 9s ease-in-out infinite alternate;
+
+    background-attachment: fixed;
 }
 
 
-/* TÍTULO PRINCIPAL */
+/* ==========================================
+   ANIMACIÓN DEL FONDO
+========================================== */
+
+@keyframes fondoLava {
+
+    0% {
+        background-position:
+            0% 20%,
+            100% 0%,
+            50% 100%,
+            0% 100%,
+            50% 50%,
+            0% 50%;
+    }
+
+    20% {
+        background-position:
+            25% 40%,
+            75% 20%,
+            30% 80%,
+            30% 70%,
+            70% 30%,
+            25% 40%;
+    }
+
+    40% {
+        background-position:
+            60% 20%,
+            30% 50%,
+            80% 30%,
+            70% 20%,
+            30% 70%,
+            50% 20%;
+    }
+
+    60% {
+        background-position:
+            80% 60%,
+            20% 80%,
+            50% 20%,
+            20% 50%,
+            70% 60%,
+            75% 70%;
+    }
+
+    80% {
+        background-position:
+            40% 80%,
+            80% 50%,
+            20% 60%,
+            80% 20%,
+            40% 30%,
+            30% 80%;
+    }
+
+    100% {
+        background-position:
+            100% 50%,
+            0% 100%,
+            100% 0%,
+            100% 20%,
+            50% 80%,
+            100% 50%;
+    }
+
+}
+
+
+/* ==========================================
+   TÍTULO
+========================================== */
 
 h1 {
-    margin: 10px auto 25px;
+    margin: 20px auto 18px;
 
-    padding: 20px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    color: #ffb300;
+    font-size: 44px;
 
-    background: linear-gradient(
-        135deg,
-        #29294a,
-        #17172b
-    );
-
-    border: 3px solid #ff9800;
-
-    border-radius: 20px;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 55px;
-
-    letter-spacing: 5px;
-
-    text-shadow:
-        3px 3px 0px #000,
-        0px 0px 15px #ff6f00;
-
-    box-shadow:
-        0 0 20px rgba(255, 152, 0, 0.5);
-}
-
-
-/* TÍTULOS */
-
-h2 {
-    margin-top: 35px;
-
-    color: #80deea;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 36px;
+    font-weight: 900;
 
     letter-spacing: 2px;
 
-    text-shadow: 2px 2px 4px #000;
+    text-transform: uppercase;
+
+    color: white;
+
+    text-shadow:
+        0 0 4px rgba(255, 255, 255, 0.95),
+        0 0 10px rgba(255, 255, 255, 0.7),
+        0 0 18px rgba(80, 170, 255, 0.25),
+        0 0 22px rgba(255, 80, 30, 0.20);
+
+    filter:
+        drop-shadow(
+            0 3px 4px
+            rgba(0, 0, 0, 0.75)
+        );
+
+    animation:
+        brilloTitulo 4s ease-in-out infinite alternate;
+}
+
+
+/* ==========================================
+   BRILLO DEL TÍTULO
+========================================== */
+
+@keyframes brilloTitulo {
+
+    0% {
+        text-shadow:
+            0 0 4px rgba(255, 255, 255, 0.7),
+            0 0 8px rgba(255, 255, 255, 0.4),
+            0 3px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    50% {
+        text-shadow:
+            0 0 6px rgba(255, 255, 255, 0.95),
+            0 0 14px rgba(255, 255, 255, 0.65),
+            0 0 20px rgba(100, 190, 255, 0.25),
+            0 3px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    100% {
+        text-shadow:
+            0 0 7px rgba(255, 255, 255, 1),
+            0 0 16px rgba(255, 255, 255, 0.75),
+            0 0 22px rgba(80, 180, 255, 0.35),
+            0 3px 5px rgba(0, 0, 0, 0.7);
+    }
+
+}
+
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+section {
+    width: 95%;
+    max-width: 1100px;
+
+    margin: 15px auto;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.27);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* ==========================================
+   TÍTULOS SECUNDARIOS
+========================================== */
+
+h2 {
+    margin: 10px 0 15px;
+
+    font-size: 30px;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px
+        rgba(255, 255, 255, 0.4),
+
+        0 3px 5px
+        rgba(0, 0, 0, 0.7);
 }
 
 h3 {
-    color: #ffcc80;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 25px;
+    margin: 10px 0;
 }
 
 
-/* REGLAS */
+/* ==========================================
+   LISTA DE PERSONAJES
+========================================== */
 
-details {
-    max-width: 750px;
+#lista-personajes {
+    display: flex;
 
-    margin: 0 auto 30px;
+    justify-content: center;
 
-    padding: 18px;
+    align-items: stretch;
 
-    background: rgba(41, 41, 74, 0.9);
+    flex-wrap: wrap;
 
-    border: 2px solid #4fc3f7;
+    gap: 20px;
 
-    border-radius: 15px;
-
-    box-shadow: 0 0 15px rgba(79, 195, 247, 0.25);
+    margin: 15px auto;
 }
 
-summary {
+
+/* ==========================================
+   TARJETAS
+========================================== */
+
+.tarjeta-personaje {
+    position: relative;
+
+    width: 190px;
+
+    padding: 12px;
+
+    border-radius: 18px;
+
     cursor: pointer;
 
-    font-family: "Bangers", cursive;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 
-    font-size: 24px;
+    background:
+        rgba(255, 255, 255, 0.08);
 
-    color: #81d4fa;
-}
-
-details p,
-details li {
-    font-size: 18px;
-}
-
-
-/* SELECCIÓN DE PERSONAJE */
-
-#seleccionar-personaje {
-    max-width: 1100px;
-
-    margin: auto;
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.25);
 }
 
 
-/* FLEXBOX - PERSONAJES */
+.tarjeta-personaje:hover {
+    transform:
+        translateY(-6px) scale(1.03);
 
-.personajes {
+    box-shadow:
+        0 0 20px
+        rgba(255, 255, 255, 0.3);
+}
+
+
+.tarjeta-personaje img {
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+
+.tarjeta-personaje h3 {
+    margin: 8px 0 4px;
+
+    font-size: 20px;
+}
+
+
+.tarjeta-personaje p {
+    margin: 4px 0;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   FUEGO
+========================================== */
+
+.tarjeta-fuego {
+    border-color:
+        rgba(255, 55, 35, 0.95);
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 50, 25, 0.45);
+}
+
+
+.tarjeta-fuego:hover {
+    box-shadow:
+        0 0 22px
+        rgba(255, 55, 25, 0.75);
+}
+
+
+/* ==========================================
+   AGUA
+========================================== */
+
+.tarjeta-agua {
+    border-color:
+        rgba(70, 175, 255, 0.95);
+
+    box-shadow:
+        0 0 12px
+        rgba(50, 160, 255, 0.45);
+}
+
+
+.tarjeta-agua:hover {
+    box-shadow:
+        0 0 22px
+        rgba(50, 170, 255, 0.75);
+}
+
+
+/* ==========================================
+   TIERRA
+========================================== */
+
+.tarjeta-tierra {
+    border-color:
+        rgba(90, 220, 100, 0.95);
+
+    box-shadow:
+        0 0 12px
+        rgba(70, 210, 90, 0.45);
+}
+
+
+.tarjeta-tierra:hover {
+    box-shadow:
+        0 0 22px
+        rgba(70, 220, 90, 0.75);
+}
+
+
+/* ==========================================
+   AIRE
+========================================== */
+
+.tarjeta-aire {
+    border-color:
+        rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 255, 255, 0.45);
+}
+
+
+.tarjeta-aire:hover {
+    box-shadow:
+        0 0 22px
+        rgba(255, 255, 255, 0.75);
+}
+
+
+/* ==========================================
+   PERSONAJE ELEGIDO
+========================================== */
+
+#personaje-elegido {
+    position: relative;
+
+    margin: 2px auto;
+
+    padding: 12px 25px;
+
+    min-width: 300px;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 90, 20, 0.20),
+            rgba(40, 170, 110, 0.22),
+            rgba(50, 130, 220, 0.18)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 255, 255, 0.12),
+
+        inset 0 0 12px
+        rgba(255, 255, 255, 0.05);
+
+    text-shadow:
+        0 0 6px
+        rgba(255, 255, 255, 0.8);
+
+    transition:
+        all 0.3s ease;
+}
+
+
+#personaje-elegido.personaje-seleccionado {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 70, 20, 0.30),
+            rgba(40, 170, 100, 0.25),
+            rgba(40, 130, 220, 0.25)
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 0 15px
+        rgba(255, 255, 255, 0.3);
+
+    transform:
+        scale(1.02);
+}
+
+
+/* ==========================================
+   BOTONES
+========================================== */
+
+button {
+    padding: 10px 18px;
+
+    margin: 6px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #176b58,
+            #0b4539
+        );
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 15px
+        rgba(0, 0, 0, 0.45);
+}
+
+
+button:active {
+    transform:
+        scale(0.96);
+}
+
+
+/* ==========================================
+   BOTONES DE ATAQUE
+========================================== */
+
+#botones-ataque {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+#botones-ataque button {
+    min-width: 130px;
+}
+
+
+/* FUEGO */
+
+#boton-fuego {
+    background:
+        linear-gradient(
+            135deg,
+            #c43a20,
+            #71180d
+        );
+}
+
+
+/* AGUA */
+
+#boton-agua {
+    background:
+        linear-gradient(
+            135deg,
+            #1976b8,
+            #0b426b
+        );
+}
+
+
+/* TIERRA */
+
+#boton-tierra {
+    background:
+        linear-gradient(
+            135deg,
+            #657b2d,
+            #354818
+        );
+}
+
+
+/* AIRE */
+
+#boton-aire {
+    background:
+        linear-gradient(
+            135deg,
+            #777777,
+            #3e3e3e
+        );
+}
+
+
+/* ==========================================
+   COMBATE
+========================================== */
+
+#seleccionar-ataque {
+    max-width: 900px;
+}
+
+
+/* ==========================================
+   DATOS DEL COMBATE
+========================================== */
+
+#datos-combate {
     display: flex;
 
     justify-content: center;
@@ -136,409 +644,493 @@ details li {
 
     gap: 25px;
 
-    margin: 30px auto;
+    margin: 20px auto;
 }
 
 
-/* TARJETAS DE PERSONAJES */
+/* ==========================================
+   JUGADOR Y ENEMIGO
+========================================== */
 
-.personaje-card {
-    width: 190px;
-    min-height: 220px;
+#personaje-jugador,
+#ataque-enemigo {
+    flex: 1 1 250px;
+
+    max-width: 350px;
+
+    min-height: 80px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
 
     display: flex;
-
-    flex-direction: column;
 
     justify-content: center;
 
     align-items: center;
 
-    gap: 8px;
+    font-weight: bold;
+}
 
-    padding: 25px 15px;
+
+/* ==========================================
+   VIDAS
+========================================== */
+
+#vidas {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    margin: 15px 0;
+}
+
+
+#vidas p {
+    margin: 5px;
+}
+
+
+/* ==========================================
+   CREAR PERSONAJE
+========================================== */
+
+#crear-personaje {
+    max-width: 600px;
+
+    margin: 20px auto;
+
+    padding: 25px;
 
     border-radius: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.30);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* ==========================================
+   INPUT
+========================================== */
+
+#nombre-personaje {
+    width: 80%;
+
+    padding: 12px 15px;
+
+    margin: 8px 0 15px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.3);
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+    color: white;
+
+    font-size: 17px;
+
+    text-align: center;
+}
+
+
+#nombre-personaje::placeholder {
+    color:
+        rgba(255, 255, 255, 0.6);
+}
+
+
+#nombre-personaje:focus {
+    border-color:
+        rgba(100, 255, 180, 0.7);
+
+    box-shadow:
+        0 0 10px
+        rgba(50, 255, 150, 0.25);
+}
+
+
+/* ==========================================
+   OPCIONES DE PODER
+========================================== */
+
+#crear-personaje label {
+    display: inline-block;
+
+    margin: 7px 5px;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
 
     cursor: pointer;
 
     transition:
-        transform 0.3s,
-        box-shadow 0.3s,
-        border 0.3s;
-
-    border: 3px solid transparent;
-
-    user-select: none;
+        background 0.2s ease;
 }
 
 
-/* Ocultamos el radio original */
+#crear-personaje label:hover {
+    background:
+        rgba(255, 255, 255, 0.14);
+}
 
-.personaje-card input {
+
+#crear-personaje input[type="radio"] {
+    margin-right: 5px;
+}
+
+
+/* ==========================================
+   CARTEL PERSONAJE CREADO
+========================================== */
+
+#mensaje-personaje-creado {
     display: none;
-}
 
+    position: fixed;
 
-/* Icono del elemento */
+    top: 50%;
+    left: 50%;
 
-.elemento {
-    font-size: 55px;
+    transform:
+        translate(-50%, -50%);
 
-    transition: transform 0.3s;
-}
+    z-index: 99999;
 
+    width: 420px;
 
-/* Nombre */
+    max-width: 85%;
 
-.nombre-personaje {
-    font-family: "Bangers", cursive;
+    padding: 25px 30px;
 
-    font-size: 34px;
+    text-align: center;
 
-    letter-spacing: 2px;
-
-    text-shadow: 2px 2px 4px #000;
-}
-
-
-/* Elemento */
-
-.elemento-nombre {
-    font-family: "Kalam", cursive;
-
-    font-size: 20px;
+    font-size: 22px;
 
     font-weight: bold;
 
-    letter-spacing: 3px;
-}
-
-
-/* EFECTO HOVER */
-
-.personaje-card:hover {
-    transform: translateY(-12px) scale(1.05);
-
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-}
-
-.personaje-card:hover .elemento {
-    transform: scale(1.3) rotate(5deg);
-}
-
-
-/* PERSONAJE SELECCIONADO */
-
-.personaje-card:has(input:checked) {
-    transform: scale(1.08);
-
-    border: 4px solid white;
-
-    box-shadow:
-        0 0 15px white,
-        0 0 35px currentColor;
-}
-
-
-/* FUEGO */
-
-.fuego {
-    background:
-        linear-gradient(
-            145deg,
-            #4b0000,
-            #a51c00,
-            #ff6f00
-        );
-
-    color: #fff3e0;
-
-    border-color: #ff5722;
-}
-
-
-/* AGUA */
-
-.agua {
-    background:
-        linear-gradient(
-            145deg,
-            #003b73,
-            #006994,
-            #4fc3f7
-        );
-
     color: white;
 
-    border-color: #4fc3f7;
-}
-
-
-/* AIRE */
-
-.aire {
     background:
         linear-gradient(
-            145deg,
-            #8d7b45,
-            #d8c98c,
-            #fff3b0
+            135deg,
+            rgba(0, 150, 80, 0.97),
+            rgba(0, 80, 50, 0.97)
         );
 
-    color: #302b16;
-
-    border-color: #ffe082;
-}
-
-
-/* TIERRA */
-
-.tierra {
-    background:
-        linear-gradient(
-            145deg,
-            #263d20,
-            #4d6b36,
-            #8b795e
-        );
-
-    color: #f1ead8;
-
-    border-color: #8bc34a;
-}
-
-
-/* BOTÓN SELECCIONAR */
-
-#boton-personaje {
-    padding: 14px 30px;
-
-    margin: 15px;
-
-    border: 3px solid #ffb300;
-
-    border-radius: 12px;
-
-    background: #29294a;
-
-    color: #ffcc80;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 25px;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-#boton-personaje:hover {
-    background: #ff9800;
-
-    color: #1e1e2f;
-
-    transform: scale(1.08);
-}
-
-
-/* SELECCIÓN DE ATAQUE */
-
-#seleccionar-ataque {
-    margin-top: 35px;
-}
-
-.vidas {
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 30px;
-}
-
-.vidas p {
-    font-size: 20px;
-}
-
-.vidas span {
-    font-family: "Bangers", cursive;
-
-    font-size: 28px;
-
-    color: #ffeb3b;
-}
-
-
-/* ATAQUES - FLEXBOX */
-
-.ataques {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 15px;
-
-    margin: 25px auto;
-}
-
-
-/* Botones de ataque */
-
-.ataque {
-    min-width: 150px;
-
-    padding: 15px 25px;
-
-    border: 3px solid white;
-
-    border-radius: 15px;
-
-    color: white;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 25px;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    text-shadow: 2px 2px 3px #000;
-
-    transition: 0.3s;
-}
-
-.ataque:hover {
-    transform: translateY(-7px) scale(1.08);
-
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-
-/* MENSAJES */
-
-#mensajes {
-    max-width: 750px;
-
-    margin: 35px auto;
-
-    padding: 25px;
-
-    background: rgba(41, 41, 74, 0.95);
-
-    border: 2px solid #80deea;
+    border:
+        3px solid
+        rgba(120, 255, 180, 0.9);
 
     border-radius: 20px;
 
-    font-size: 22px;
+    box-shadow:
+        0 0 20px
+        rgba(0, 255, 130, 0.7),
 
-    box-shadow: 0 0 20px rgba(128, 222, 234, 0.2);
+        0 0 50px
+        rgba(0, 255, 130, 0.4);
+
+    text-shadow:
+        0 2px 5px
+        rgba(0, 0, 0, 0.8);
 }
 
 
-/* REINICIAR */
+/* ==========================================
+   CARTEL VISIBLE
+========================================== */
 
-#reiniciar button {
-    padding: 12px 25px;
+#mensaje-personaje-creado.mensaje-visible {
+    display: block;
 
-    background: #29294a;
-
-    color: white;
-
-    border: 2px solid #ef5350;
-
-    border-radius: 10px;
-
-    font-family: "Bangers", cursive;
-
-    font-size: 22px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-#reiniciar button:hover {
-    background: #ef5350;
-
-    transform: scale(1.08);
+    animation:
+        aparecerCartel
+        0.35s
+        ease-out;
 }
 
 
-/* RESPONSIVE */
+@keyframes aparecerCartel {
 
-@media (max-width: 800px) {
+    from {
+        opacity: 0;
 
-    body {
-        padding: 12px;
+        transform:
+            translate(-50%, -50%)
+            scale(0.7);
     }
 
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   PERSONAJES CREADOS
+========================================== */
+
+#personajes-creados {
+    max-width: 1000px;
+
+    margin: 20px auto;
+}
+
+
+#lista-personajes-creados {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+
+/* ==========================================
+   BOTÓN ELIMINAR
+========================================== */
+
+.boton-eliminar {
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    width: 30px;
+    height: 30px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+
+    background:
+        rgba(150, 20, 20, 0.9);
+
+    z-index: 10;
+}
+
+
+.boton-eliminar:hover {
+    background:
+        rgba(220, 30, 30, 1);
+}
+
+
+/* ==========================================
+   MENSAJES
+========================================== */
+
+#mensajes {
+    margin: 20px auto;
+
+    padding: 15px;
+
+    min-height: 50px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   RESULTADO
+========================================== */
+
+#resultado-ronda {
+    padding: 10px;
+}
+
+
+.resultado-emojis {
+    font-size: 20px;
+
+    margin: 15px;
+}
+
+
+/* ==========================================
+   REINICIAR
+========================================== */
+
+#reiniciar {
+    margin: 20px auto;
+
+    padding: 20px;
+}
+
+
+/* ==========================================
+   REGLAS
+========================================== */
+
+#reglas {
+    margin-top: 20px;
+}
+
+
+#reglas summary {
+    cursor: pointer;
+
+    font-weight: bold;
+
+    padding: 8px;
+}
+
+
+#contenido-reglas {
+    margin-top: 10px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+
     h1 {
-        font-size: 42px;
+        font-size: 30px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    h2 {
+        font-size: 24px;
+    }
+
+
+    section {
+        width: 95%;
 
         padding: 15px;
     }
 
-    h2 {
-        font-size: 30px;
+
+    #lista-personajes {
+        gap: 12px;
     }
 
-    .personajes {
-        gap: 15px;
+
+    .tarjeta-personaje {
+        width: 145px;
     }
 
-    .personaje-card {
-        width: 160px;
-        min-height: 190px;
-    }
-}
 
-
-@media (max-width: 500px) {
-
-    h1 {
-        font-size: 32px;
-
-        letter-spacing: 2px;
+    .tarjeta-personaje img {
+        height: 140px;
     }
 
-    h2 {
-        font-size: 27px;
+
+    #personaje-elegido {
+        min-width: 0;
+
+        width: 90%;
+
+        font-size: 17px;
+
+        padding: 10px 15px;
     }
 
-    .personajes {
+
+    #nombre-personaje {
+        width: 95%;
+    }
+
+
+    #mensaje-personaje-creado {
+        width: 80%;
+
+        padding: 20px;
+
+        font-size: 18px;
+    }
+
+
+    #datos-combate {
         flex-direction: column;
 
         align-items: center;
+
+        gap: 15px;
     }
 
-    .personaje-card {
-        width: 85%;
 
-        max-width: 300px;
+    #personaje-jugador,
+    #ataque-enemigo {
+        width: 90%;
+
+        max-width: 320px;
     }
 
-    .ataques {
-        flex-direction: column;
-    }
 
-    .ataque {
-        width: 85%;
-
-        max-width: 300px;
-    }
-
-    .vidas {
+    #vidas {
         flex-direction: column;
 
         gap: 5px;
     }
+
+
+    #botones-ataque {
+        flex-direction: column;
+    }
+
+
+    #botones-ataque button {
+        width: 85%;
+
+        max-width: 250px;
+    }
+
 }
