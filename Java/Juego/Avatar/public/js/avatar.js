@@ -94,6 +94,8 @@ class Avatar {
         this.nombre = nombre;
         this.poder = poder;
         this.imagen = imagen;
+        this.vida = 5;
+        this.ataques = []; //Esto es lo de hoy 16/09
 
     }
 
