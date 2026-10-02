@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubrí Mendoza</title>
+    
+    <!-- Tipografías Modernas -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet para el Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+    <!-- Tu hoja de estilos refinada -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL DISPOSITIVO MÓVIL / WEB RESPONSIVA -->
+    <main class="app-viewport">
+
+        <!-- 1. PANTALLA DE PREFERENCIAS (Pantalla 4 del Maquetado) -->
+        <section id="screen-preferences" class="app-screen active">
+            <header class="auth-header">
+                <h1>DESCUBRÍ<br>MENDOZA</h1>
+                <p>Tu guía de experiencias</p>
+            </header>
+            
+            <div class="card-form">
+                <h2>Contanos qué<br>te interesa</h2>
+                <p class="subtitle">Seleccioná tus preferencias para recomendarte mejores experiencias.</p>
+                
+                <div class="input-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" id="username" placeholder="Ej. Jimena">
+                </div>
+
+                <h3>Intereses</h3>
+                <div class="preferences-grid">
+                    <label class="pref-chip">
+                        <input type="checkbox" value="Wine">
+                        <div class="chip-content">
+                            <span class="emoji">🍷</span>
+                            <span class="label-text">Vino</span>
+                        </div>
+                    </label>
+                    <label class="pref-chip">
+                        <input type="checkbox" value="Music">
+                        <div class="chip-content">
+                            <span class="emoji">🎵</span>
+                            <span class="label-text">Música</span>
+                        </div>
+                    </label>
+                    <label class="pref-chip">
+                        <input type="checkbox" value="Food">
+                        <div class="chip-content">
+                            <span class="emoji">🍴</span>
+                            <span class="label-text">Gastronomía</span>
+                        </div>
+                    </label>
+                    <label class="pref-chip">
+                        <input type="checkbox" value="Nature">
+                        <div class="chip-content">
+                            <span class="emoji">⛰️</span>
+                            <span class="label-text">Aire Libre</span>
+                        </div>
+                    </label>
+                    <label class="pref-chip">
+                        <input type="checkbox" value="Sports">
+                        <div class="chip-content">
+                            <span class="emoji">⚽</span>
+                            <span class="label-text">Deportes</span>
+                        </div>
+                    </label>
+                </div>
+
+                <button class="btn-primary" onclick="savePreferences()">Guardar y continuar</button>
+            </div>
+        </section>
+
+        <!-- 2. PANTALLA HOME / RECOMENDACIONES (Pantalla 5 del Maquetado) -->
+        <section id="screen-home" class="app-screen">
+            <header class="app-header">
+                <div>
+                    <span class="greeting">¡Hola, <span id="display-name">Viajero</span>!</span>
+                    <h2 class="header-title">Recomendaciones para vos</h2>
+                </div>
+                <div class="avatar-placeholder"></div>
+            </header>
+
+            <div id="events-container" class="events-feed">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+        </section>
+
+        <!-- 3. PANTALLA MAPA INTERACTIVO (Pantalla 9 del Maquetado) -->
+        <section id="screen-map" class="app-screen">
+            <header class="app-header">
+                <h2 class="header-title">Mapa de Experiencias</h2>
+            </header>
+            <div class="map-wrapper">
+                <div id="map"></div>
+            </div>
+        </section>
+
+        <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA (Solo se muestra tras guardar preferencias) -->
+        <nav id="bottom-nav" class="bottom-navigation">
+            <button class="nav-item active" onclick="navigateTo('screen-home', this)">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Inicio</span>
+            </button>
+            <button class="nav-item" onclick="navigateTo('screen-map', this)">
+                <span class="nav-icon">📍</span>
+                <span class="nav-label">Mapa</span>
+            </button>
+            <button class="nav-item" onclick="logout()">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Salir</span>
+            </button>
+        </nav>
+
+    </main>
+
+    <!-- Scripts en orden correcto -->
+    <script src="events.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

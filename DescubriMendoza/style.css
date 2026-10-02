@@ -1,0 +1,416 @@
+/* 1. RESET GENERAL Y VARIABLES (Inspiradas en Mendoza Premium)  */
+:root {
+    --bg-window: #E9ECEF;         
+    /* Cambiamos el fondo blanco de la app por un degradé de atardecer lila, celeste y borgoña */
+    --bg-app-gradient: linear-gradient(180deg, #A5C4D4 0%, #845EC2 50%, #4B132B 100%);
+    --bg-primary: rgba(255, 255, 255, 0.94); /* Capa base con transparencia */
+    --bg-secondary: #F8F9FA;      
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+    
+    --color-primary: #3F5E4D;     /* Verde Oliva ajustado para mejor contraste */
+    --color-primary-hover: #2D4337;
+    --border-radius: 16px;
+    
+    /* Categorías */
+    --cat-wine: #5C132E;          
+    --cat-music: #4A3E7D;         
+    --cat-food: #D07050;          
+    --cat-nature: #2E5C44;        
+    --cat-sports: #1D4ED8;        
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-window);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*   2. CONTENEDOR INTELIGENTE (Mobile-First + Escalabilidad de Escritorio)*/
+.app-viewport {
+    width: 100%;
+    max-width: 430px; 
+    height: 100vh;
+    max-height: 850px;
+    /* Aplicamos el atardecer y una imagen vectorizada de montañas/viñedos fusionada abajo */
+    background: url('https://unsplash.com'), var(--bg-app-gradient);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay; /* Genera la fusión mágica lila-borgoña sobre texturas */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-radius: 24px;
+    transition: max-width 0.3s ease;
+}
+
+/* Modificación para que la pantalla de preferencias sea translúcida y deje ver el fondo */
+#screen-preferences {
+    background: transparent;
+}
+
+/* Modificación para que los contenedores internos de la tarjeta resalten sobre el fondo */
+#screen-preferences .card-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+/* REGLA RESPONSIVA ADAPTADA "COLUMNAS.CSS":
+   Si el usuario abre la web desde un celular real, el contenedor ocupa el 100% sin marcos */
+@media (max-width: 768px) {
+    body {
+        background-color: var(--bg-primary);
+    }
+    .app-viewport {
+        max-width: 100%;
+        height: 100vh;
+        max-height: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+}
+
+/*  3. SISTEMA DE PANTALLAS INTERNAS (SPA) */
+.app-screen {
+    display: none; /* Oculto por defecto */
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    padding-bottom: 96px; /* Espacio de resguardo para la botonera inferior */
+}
+
+.app-screen.active {
+    display: flex; /* Solo la pantalla activa se renderiza */
+    flex-direction: column;
+}
+
+/* 4. PANTALLA: SELECCIÓN DE PREFERENCIAS */
+.auth-header {
+    text-align: center;
+    padding: 30px 0 15px 0;
+}
+
+.auth-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--color-primary);
+}
+
+.auth-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card-form h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.card-form .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    padding: 14px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    background-color: var(--bg-secondary);
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--color-primary);
+    background-color: var(--bg-primary);
+    box-shadow: 0 0 0 3px rgba(45, 74, 62, 0.1);
+}
+
+/* INTERESES / FILAS SELECCIONABLES (CHIPS) */
+.preferences-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0 24px 0;
+}
+
+.pref-chip {
+    cursor: pointer;
+}
+
+.pref-chip input {
+    display: none;
+}
+
+.chip-content {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.pref-chip input:checked + .chip-content {
+    background-color: #F0F4F2;
+    border-color: var(--color-primary);
+}
+
+.chip-content .emoji {
+    font-size: 18px;
+    margin-right: 14px;
+}
+
+.chip-content .label-text {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 12px rgba(45, 74, 62, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/*5. PANTALLA: HOME & TARJETAS DE EVENTOS MODERNAS */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.app-header .greeting {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.app-header .header-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.avatar-placeholder {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-image: url('https://unsplash.com');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--color-primary);
+}
+
+.events-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.event-card {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    border: 1px solid #EDF2F7;
+    transition: transform 0.2s ease;
+}
+
+.card-image {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 12px;
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-wine { background-color: var(--cat-wine); }
+.badge-music { background-color: var(--cat-music); }
+.badge-food { background-color: var(--cat-food); }
+.badge-nature { background-color: var(--cat-nature); }
+.badge-sports { background-color: var(--cat-sports); }
+
+.card-body {
+    padding: 16px;
+}
+
+.card-body h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.meta-info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.meta-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card-body .description {
+    font-size: 13px;
+    color: #4A5568;
+    line-height: 1.5;
+}
+
+/*6. PANTALLA: MAPA INTERACTIVO*/
+.map-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.map-popup h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--color-primary);
+    margin-bottom: 2px;
+}
+
+.map-popup p {
+    font-size: 12px;
+    margin: 1px 0;
+}
+
+/*7. NAVBAR INFERIOR INTERACTIVA (Efecto Vidrio Transparente)*/
+.bottom-navigation {
+    display: none; /* Se activa mediante JS al ingresar */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px); /* Efecto iOS / Glassmorphism */
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    justify-content: space-around;
+    align-items: center;
+    z-index: 999;
+    padding-bottom: 10px;
+}
+
+.bottom-navigation.visible {
+    display: flex;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    width: 60px;
+}
+
+.nav-item .nav-icon {
+    font-size: 20px;
+    opacity: 0.5;
+    transition: transform 0.2s ease;
+}
+
+.nav-item .nav-label {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.nav-item.active {
+    color: var(--color-primary);
+}
+
+.nav-item.active .nav-icon {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+/* estados vacíos */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
