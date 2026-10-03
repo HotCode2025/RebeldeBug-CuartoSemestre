@@ -1,7 +1,6 @@
-/* 1. RESET GENERAL Y VARIABLES (Inspiradas en Mendoza Premium)  */
+/* 1. RESET GENERAL Y VARIABLES  */
 :root {
     --bg-window: #E9ECEF;         
-    /* Cambiamos el fondo blanco de la app por un degradé de atardecer lila, celeste y borgoña */
     --bg-app-gradient: linear-gradient(180deg, #A5C4D4 0%, #845EC2 50%, #4B132B 100%);
     --bg-primary: rgba(255, 255, 255, 0.94); /* Capa base con transparencia */
     --bg-secondary: #F8F9FA;      
@@ -43,11 +42,10 @@ body {
     max-width: 430px; 
     height: 100vh;
     max-height: 850px;
-    /* Aplicamos el atardecer y una imagen vectorizada de montañas/viñedos fusionada abajo */
     background: url('https://unsplash.com'), var(--bg-app-gradient);
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay; /* Genera la fusión mágica lila-borgoña sobre texturas */
+    background-blend-mode: overlay;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -57,7 +55,7 @@ body {
     transition: max-width 0.3s ease;
 }
 
-/* Modificación para que la pantalla de preferencias sea translúcida y deje ver el fondo */
+
 #screen-preferences {
     background: transparent;
 }
@@ -71,8 +69,7 @@ body {
 }
 
 
-/* REGLA RESPONSIVA ADAPTADA "COLUMNAS.CSS":
-   Si el usuario abre la web desde un celular real, el contenedor ocupa el 100% sin marcos */
+/* REGLA RESPONSIVA ADAPTADA "COLUMNAS.CSS"*/
 @media (max-width: 768px) {
     body {
         background-color: var(--bg-primary);
@@ -86,13 +83,13 @@ body {
     }
 }
 
-/*  3. SISTEMA DE PANTALLAS INTERNAS (SPA) */
+/*  3. SISTEMA DE PANTALLAS INTERNAS */
 .app-screen {
     display: none; /* Oculto por defecto */
     flex: 1;
     overflow-y: auto;
     padding: 24px;
-    padding-bottom: 96px; /* Espacio de resguardo para la botonera inferior */
+    padding-bottom: 96px; 
 }
 
 .app-screen.active {
@@ -166,7 +163,7 @@ body {
     box-shadow: 0 0 0 3px rgba(45, 74, 62, 0.1);
 }
 
-/* INTERESES / FILAS SELECCIONABLES (CHIPS) */
+/* INTERESES / FILAS SELECCIONABLES */
 .preferences-grid {
     display: flex;
     flex-direction: column;
@@ -225,7 +222,7 @@ body {
     background-color: var(--color-primary-hover);
 }
 
-/*5. PANTALLA: HOME & TARJETAS DE EVENTOS MODERNAS */
+/*5. PANTALLA: HOME & TARJETAS DE EVENTOS */
 .app-header {
     display: flex;
     justify-content: space-between;
@@ -352,7 +349,7 @@ body {
     margin: 1px 0;
 }
 
-/*7. NAVBAR INFERIOR INTERACTIVA (Efecto Vidrio Transparente)*/
+/*7. NAVBAR INFERIOR INTERACTIVA*/
 .bottom-navigation {
     display: none; /* Se activa mediante JS al ingresar */
     position: absolute;
@@ -361,7 +358,7 @@ body {
     width: 100%;
     height: 76px;
     background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px); /* Efecto iOS / Glassmorphism */
+    backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     justify-content: space-around;
