@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descubrí Mendoza</title>
     
-    <!-- Tipografías Modernas -->
+    <!-- Tipografías-->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -13,8 +13,6 @@
     <!-- Leaflet para el Mapa -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    
-    <!-- Tu hoja de estilos refinada -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,7 +20,7 @@
     <!-- CONTENEDOR PRINCIPAL DISPOSITIVO MÓVIL / WEB RESPONSIVA -->
     <main class="app-viewport">
 
-        <!-- 1. PANTALLA DE PREFERENCIAS (Pantalla 4 del Maquetado) -->
+        <!-- 1. PANTALLA DE PREFERENCIAS-->
         <section id="screen-preferences" class="app-screen active">
             <header class="auth-header">
                 <h1>DESCUBRÍ<br>MENDOZA</h1>
@@ -81,7 +79,7 @@
             </div>
         </section>
 
-        <!-- 2. PANTALLA HOME / RECOMENDACIONES (Pantalla 5 del Maquetado) -->
+        <!-- 2. PANTALLA HOME / RECOMENDACIONES -->
         <section id="screen-home" class="app-screen">
             <header class="app-header">
                 <div>
@@ -92,11 +90,10 @@
             </header>
 
             <div id="events-container" class="events-feed">
-                <!-- Se inyecta dinámicamente con JS -->
             </div>
         </section>
 
-        <!-- 3. PANTALLA MAPA INTERACTIVO (Pantalla 9 del Maquetado) -->
+        <!-- 3. PANTALLA MAPA INTERACTIVO -->
         <section id="screen-map" class="app-screen">
             <header class="app-header">
                 <h2 class="header-title">Mapa de Experiencias</h2>
@@ -106,7 +103,7 @@
             </div>
         </section>
 
-        <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA (Solo se muestra tras guardar preferencias) -->
+        <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA -->
         <nav id="bottom-nav" class="bottom-navigation">
             <button class="nav-item active" onclick="navigateTo('screen-home', this)">
                 <span class="nav-icon">🏠</span>
@@ -123,8 +120,6 @@
         </nav>
 
     </main>
-
-    <!-- Scripts en orden correcto -->
     <script src="events.js"></script>
     <script src="app.js"></script>
 </body>
