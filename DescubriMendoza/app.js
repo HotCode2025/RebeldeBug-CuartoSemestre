@@ -4,7 +4,7 @@ let currentEvents = [];
 // Función simulada para traer eventos de una Base de Datos real o API (ej. Eventbrite)
 async function fetchEventosReales() {
     try {
-        // En un caso real harías: const response = await fetch('https://tu-backend.com/api/eventos');
+        // Para evento real hariamos: const response = await fetch('https://backend');
         // return await response.json();
         
         // Por ahora usamos el array local 'events' del archivo events.js para que funcione el prototipo
@@ -93,7 +93,7 @@ function initMap(){
     if (mapInstance) return;
     mapInstance = L.map('map', { zoomControl: false }).setView([-32.8895, -68.8458], 11);
     
-    // Mapa libre de OpenStreetMap (No requiere API KEY). El filtro blanco/negro está en el CSS
+    // Mapa libre de OpenStreetMap (No requiere API KEY).
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(mapInstance);
