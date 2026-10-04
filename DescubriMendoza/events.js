@@ -1,52 +1,52 @@
 const events = [
     {
-        name: "Wine Festival",
+        name: "Festival del Vino",
         category: "Wine",
-        location: "Mendoza City",
-        date: "June 10",
-        description: "Enjoy the best wines in Mendoza.",
+        location: "Luján de Cuyo",
+        date: "10 de Junio",
+        description: "Degustación de los mejores Malbecs de la región en bodegas boutique.",
         lat: -32.8895,
         lng: -68.8458,
-        image: "https://unsplash.com"
+        image: "https://images.unsplash.com/photo-1510812431401-46f7775bc793?q=80&w=500&auto=format&fit=crop"
     },
     {
-        name: "Rock Concert",
+        name: "Concierto de Jazz",
         category: "Music",
         location: "Arena Maipú",
-        date: "June 15",
-        description: "Live rock music with local bands.",
+        date: "15 de Junio",
+        description: "Una noche mágica con los mejores exponentes del jazz local e internacional.",
         lat: -32.9777,
         lng: -68.7805,
-        image: "https://unsplash.com"
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500&auto=format&fit=crop"
     },
     {
-        name: "Mountain Adventure",
+        name: "Aventura en Aconcagua",
         category: "Nature",
         location: "Potrerillos",
-        date: "June 20",
-        description: "Hiking and outdoor experiences.",
+        date: "20 de Junio",
+        description: "Trekking guiado por los senderos más impactantes de la cordillera.",
         lat: -32.9511,
         lng: -69.2017,
-        image: "https://unsplash.com"
+        image: "https://images.unsplash.com/photo-1464822759023-//q=80&w=500&auto=format&fit=crop" // Reemplazar con cordillera
     },
     {
-        name: "Food Fair",
+        name: "Feria Gastronómica",
         category: "Food",
         location: "Parque Central",
-        date: "June 25",
-        description: "Traditional and international food.",
+        date: "25 de Junio",
+        description: "Sabores tradicionales mendocinos y cocina de autor en un solo lugar.",
         lat: -32.8833,
         lng: -68.8333,
-        image: "https://unsplash.com"
+        image: "https://images.unsplash.com/photo-1504674900247-087707b88efb?q=80&w=500&auto=format&fit=crop"
     },
     {
-        name: "Football Match",
+        name: "Torneo de Pádel",
         category: "Sports",
-        location: "Malvinas Argentinas Stadium",
-        date: "June 30",
-        description: "Local football championship.",
+        location: "Club Mendoza",
+        date: "30 de Junio",
+        description: "El evento deportivo más esperado del año con premios increíbles.",
         lat: -32.8908,
         lng: -68.8790,
-        image: "https://unsplash.com"
+        image: "https://images.unsplash.com/photo-1554068865-83d35d664171?q=80&w=500&auto=format&fit=crop"
     }
 ];

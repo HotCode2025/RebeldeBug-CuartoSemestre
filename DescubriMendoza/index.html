@@ -4,128 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descubrí Mendoza</title>
-    
-    <!-- Tipografías Modernas -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet para el Mapa -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    
-    <!-- Tu hoja de estilos refinada -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- CONTENEDOR PRINCIPAL DISPOSITIVO MÓVIL / WEB RESPONSIVA -->
     <main class="app-viewport">
+        
+        <!-- PANTALLA 1: SPLASH -->
+        <section id="screen-splash" class="app-screen active">
+            <video autoplay muted loop playsinline class="bg-video">
+                <source src="media/video/InicioFondo.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+            <div class="splash-content">
+                <div class="logo">
+                    <i class="ph ph-mountains"></i>
+                    <h1>DESCUBRÍ<br>MENDOZA</h1>
+                </div>
+                <p>Tu próxima aventura comienza acá</p>
+                <button class="btn-primary" onclick="navigateTo('screen-login')">Comenzar</button>
+            </div>
+        </section>
 
-        <!-- 1. PANTALLA DE PREFERENCIAS (Pantalla 4 del Maquetado) -->
-        <section id="screen-preferences" class="app-screen active">
-            <header class="auth-header">
-                <h1>DESCUBRÍ<br>MENDOZA</h1>
-                <p>Tu guía de experiencias</p>
-            </header>
-            
-            <div class="card-form">
+        <!-- PANTALLA 2: LOGIN / REGISTRO -->
+        <section id="screen-login" class="app-screen">
+            <div class="auth-container">
+                <div class="logo-dark">
+                    <i class="ph ph-mountains"></i>
+                    <h2>DESCUBRÍ<br>MENDOZA</h2>
+                </div>
+                <h3>¡Bienvenido!</h3>
+                <p class="subtitle">Iniciá sesión para continuar</p>
+                
+                <div class="input-group">
+                    <i class="ph ph-envelope"></i>
+                    <input type="email" id="email" placeholder="Usuario o email">
+                </div>
+                <div class="input-group">
+                    <i class="ph ph-lock-key"></i>
+                    <input type="password" id="password" placeholder="Contraseña">
+                </div>
+                <button class="btn-primary w-100" onclick="navigateTo('screen-preferences')">Iniciar sesión</button>
+                <p class="auth-link">¿No tenés cuenta? <b>Registrate</b></p>
+            </div>
+        </section>
+
+        <!-- PANTALLA 4: PREFERENCIAS -->
+        <section id="screen-preferences" class="app-screen">
+            <div class="preferences-content">
                 <h2>Contanos qué<br>te interesa</h2>
                 <p class="subtitle">Seleccioná tus preferencias para recomendarte mejores experiencias.</p>
                 
-                <div class="input-group">
-                    <label for="username">Nombre de usuario</label>
-                    <input type="text" id="username" placeholder="Ej. Jimena">
-                </div>
-
-                <h3>Intereses</h3>
                 <div class="preferences-grid">
-                    <label class="pref-chip">
-                        <input type="checkbox" value="Wine">
-                        <div class="chip-content">
-                            <span class="emoji">🍷</span>
-                            <span class="label-text">Vino</span>
-                        </div>
-                    </label>
-                    <label class="pref-chip">
-                        <input type="checkbox" value="Music">
-                        <div class="chip-content">
-                            <span class="emoji">🎵</span>
-                            <span class="label-text">Música</span>
-                        </div>
-                    </label>
-                    <label class="pref-chip">
-                        <input type="checkbox" value="Food">
-                        <div class="chip-content">
-                            <span class="emoji">🍴</span>
-                            <span class="label-text">Gastronomía</span>
-                        </div>
-                    </label>
-                    <label class="pref-chip">
-                        <input type="checkbox" value="Nature">
-                        <div class="chip-content">
-                            <span class="emoji">⛰️</span>
-                            <span class="label-text">Aire Libre</span>
-                        </div>
-                    </label>
-                    <label class="pref-chip">
-                        <input type="checkbox" value="Sports">
-                        <div class="chip-content">
-                            <span class="emoji">⚽</span>
-                            <span class="label-text">Deportes</span>
-                        </div>
-                    </label>
+                    <label class="pref-chip"><input type="checkbox" value="Music"><div class="chip-content"><i class="ph ph-music-note"></i><span>Música</span></div></label>
+                    <label class="pref-chip"><input type="checkbox" value="Food"><div class="chip-content"><i class="ph ph-fork-knife"></i><span>Gastronomía</span></div></label>
+                    <label class="pref-chip"><input type="checkbox" value="Wine"><div class="chip-content"><i class="ph ph-wine"></i><span>Vino</span></div></label>
+                    <label class="pref-chip"><input type="checkbox" value="Nature"><div class="chip-content"><i class="ph ph-tree"></i><span>Aire Libre</span></div></label>
+                    <label class="pref-chip"><input type="checkbox" value="Sports"><div class="chip-content"><i class="ph ph-person-simple-bike"></i><span>Deportes</span></div></label>
+                    <label class="pref-chip"><input type="checkbox" value="Culture"><div class="chip-content"><i class="ph ph-bank"></i><span>Cultura</span></div></label>
                 </div>
-
-                <button class="btn-primary" onclick="savePreferences()">Guardar y continuar</button>
+                <button class="btn-primary w-100 mt-auto" onclick="savePreferences()">Guardar y continuar</button>
             </div>
         </section>
 
-        <!-- 2. PANTALLA HOME / RECOMENDACIONES (Pantalla 5 del Maquetado) -->
-        <section id="screen-home" class="app-screen">
-            <header class="app-header">
-                <div>
-                    <span class="greeting">¡Hola, <span id="display-name">Viajero</span>!</span>
-                    <h2 class="header-title">Recomendaciones para vos</h2>
+        <!-- PANTALLA 5: HOME (Responsive) -->
+        <section id="screen-home" class="app-screen with-nav">
+            <header class="home-header">
+                <div class="greeting-box">
+                    <h1>¡Hola, Viajero!</h1>
+                    <p>¿Qué vas a descubrir hoy?</p>
                 </div>
-                <div class="avatar-placeholder"></div>
+                <div class="user-avatar"><img src="https://ui-avatars.com/api/?name=Viajero&background=4A7844&color=fff&rounded=true" alt="Perfil"></div>
             </header>
+            
+            <div class="home-content">
+                <div class="search-bar">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar actividades, eventos, lugares...">
+                    <i class="ph ph-sliders-horizontal filter-icon"></i>
+                </div>
 
-            <div id="events-container" class="events-feed">
-                <!-- Se inyecta dinámicamente con JS -->
+                <div class="section-title">
+                    <h3>Recomendaciones para vos</h3>
+                    <a href="#">Ver todos</a>
+                </div>
+
+                <div id="events-container" class="events-grid">
+                    <!-- Se inyecta con JS -->
+                </div>
             </div>
         </section>
 
-        <!-- 3. PANTALLA MAPA INTERACTIVO (Pantalla 9 del Maquetado) -->
-        <section id="screen-map" class="app-screen">
-            <header class="app-header">
-                <h2 class="header-title">Mapa de Experiencias</h2>
-            </header>
+        <!-- PANTALLA 9: MAPA -->
+        <section id="screen-map" class="app-screen with-nav p-0">
             <div class="map-wrapper">
                 <div id="map"></div>
+                <div class="map-filters">
+                    <button class="map-chip active"><i class="ph-fill ph-calendar-star"></i> Eventos</button>
+                    <button class="map-chip"><i class="ph ph-person-simple-walk"></i> Actividades</button>
+                    <button class="map-chip"><i class="ph ph-map-pin"></i> Lugares</button>
+                </div>
             </div>
         </section>
 
-        <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA (Solo se muestra tras guardar preferencias) -->
-        <nav id="bottom-nav" class="bottom-navigation">
+        <!-- PANTALLA 10: PERFIL Y RECOMPENSAS -->
+        <section id="screen-profile" class="app-screen with-nav">
+            <div class="profile-header">
+                <img src="https://ui-avatars.com/api/?name=Viajero&background=4A7844&color=fff&rounded=true" alt="Perfil" class="profile-img">
+                <h2>Viajero</h2>
+                <p>viajero@email.com</p>
+            </div>
+            
+            <!-- Sistema de Puntos -->
+            <div class="rewards-card">
+                <div class="points-header">
+                    <i class="ph-fill ph-star"></i>
+                    <div>
+                        <h4>1.250 Puntos Viajero</h4>
+                        <p>Nivel Explorador</p>
+                    </div>
+                </div>
+                <div class="rewards-actions">
+                    <button class="btn-outline">Canjear 500pts = 10% OFF en Bodegas</button>
+                    <button class="btn-outline">Canjear 1000pts = Entrada 2x1</button>
+                </div>
+            </div>
+
+            <div class="profile-menu">
+                <button><i class="ph ph-heart"></i> Mis Favoritos</button>
+                <button><i class="ph ph-ticket"></i> Mis Reservas</button>
+                <button><i class="ph ph-sliders"></i> Mis Preferencias</button>
+                <button onclick="logout()" class="text-danger"><i class="ph ph-sign-out"></i> Cerrar sesión</button>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN (Bottom en Móvil, Lateral en Desktop) -->
+        <nav id="main-nav" class="navigation">
             <button class="nav-item active" onclick="navigateTo('screen-home', this)">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-label">Inicio</span>
+                <i class="ph-fill ph-house"></i><span>Inicio</span>
             </button>
             <button class="nav-item" onclick="navigateTo('screen-map', this)">
-                <span class="nav-icon">📍</span>
-                <span class="nav-label">Mapa</span>
+                <i class="ph ph-map-trifold"></i><span>Explorar</span>
             </button>
-            <button class="nav-item" onclick="logout()">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-label">Salir</span>
+            <button class="nav-item" onclick="navigateTo('screen-profile', this)">
+                <i class="ph ph-user"></i><span>Perfil</span>
             </button>
         </nav>
-
     </main>
-
-    <!-- Scripts en orden correcto -->
-    <script src="events.js"></script>
+    <script src="events.js"></script> <!-- Asegurate de tener tu archivo events.js de antes -->
     <script src="app.js"></script>
 </body>
 </html>
