@@ -1,3 +1,4 @@
+
 import jwt from "jsonwebtoken";
 export const createAccessToken = (payLod) => {
     return new Promise((resolve,reject) => {
@@ -9,4 +10,4 @@ export const createAccessToken = (payLod) => {
 
         });
     
-};
+}
