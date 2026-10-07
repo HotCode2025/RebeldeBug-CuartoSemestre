@@ -10,8 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module", "_comentario": "cambié comonjs a module para poder usar import",
+  "type": "module",
+  "_comentario": "cambié comonjs a module para poder usar import",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "express": "^4.22.3",
