@@ -48,5 +48,93 @@ const events = [
         lat: -32.8908,
         lng: -68.8790,
         image: "https://images.unsplash.com/photo-1554068865-83d35d664171?q=80&w=500&auto=format&fit=crop"
+        category: "Wine",
+        lat: -32.8895,
+        lng: -68.8458,
+        image: "https://mendoza.gov.ar",
+        es: {
+            name: "Festival de la Vendimia 2024",
+            location: "Teatro Griego Frank Romero Day",
+            date: "03 de Marzo - 20:00 hs",
+            description: "Disfrutá de la fiesta mayor de los mendocinos. Acto central, espectáculos artísticos en vivo y la elección de la reina nacional."
+        },
+        en: {
+            name: "Harvest Festival 2024",
+            location: "Frank Romero Day Amphitheater",
+            date: "March 03 - 8:00 PM",
+            description: "Enjoy the biggest festival in Mendoza. Main act, live artistic performances, and the crowning of the National Harvest Queen."
+        }
+    },
+    {
+        category: "Music",
+        lat: -33.0333,
+        lng: -68.8667,
+        image: "https://unsplash.com",
+        es: {
+            name: "Sunset entre viñedos",
+            location: "Luján de Cuyo, Mendoza",
+            date: "15 de Marzo - 18:00 hs",
+            description: "Atardecer mágico con DJ sets en vivo, la mejor gastronomía regional y copas de los varietales más destacados de la bodega."
+        },
+        en: {
+            name: "Vineyard Sunset",
+            location: "Luján de Cuyo, Mendoza",
+            date: "March 15 - 6:00 PM",
+            description: "Magical sunset with live DJ sets, the best regional gastronomy, and glasses of the winery's top varietals."
+        }
+    },
+    {
+        category: "Nature",
+        lat: -32.8272,
+        lng: -68.9325,
+        image: "https://unsplash.com",
+        es: {
+            name: "Caminata al Cerro Arco",
+            location: "Las Heras, El Challao",
+            date: "12 de Marzo - 08:00 hs",
+            description: "Trekking guiado de dificultad media. Disfrutá de vistas panorámicas increíbles de la precordillera y de la Ciudad de Mendoza al coronar la cumbre."
+        },
+        en: {
+            name: "Cerro Arco Trekking",
+            location: "Las Heras, El Challao",
+            date: "March 12 - 08:00 AM",
+            description: "Guided medium-difficulty trekking. Enjoy incredible panoramic views of the Andes foothills and Mendoza City from the summit."
+        }
+    },
+    {
+        category: "Music",
+        lat: -32.8896,
+        lng: -68.8447,
+        image: "https://unsplash.com",
+        es: {
+            name: "Ciclo de Música Clásica",
+            location: "Teatro Independencia, Ciudad",
+            date: "10 de Marzo - 21:00 hs",
+            description: "Concierto exclusivo de la Orquesta Filarmónica de Mendoza interpretando las grandes obras de la historia de la música clásica."
+        },
+        en: {
+            name: "Classical Music Series",
+            location: "Independencia Theater, Downtown",
+            date: "March 10 - 9:00 PM",
+            description: "Exclusive concert by the Mendoza Philharmonic Orchestra performing the greatest masterpieces in classical music history."
+        }
+    },
+    {
+        category: "Food",
+        lat: -32.9234,
+        lng: -68.8489,
+        image: "https://unsplash.com",
+        es: {
+            name: "Festival de la Cerveza Artesanal",
+            location: "Parque San Vicente, Godoy Cruz",
+            date: "08 de Marzo - 17:00 hs",
+            description: "Disfrutá de las mejores cervezas artesanales mendocinas, una variada oferta de foodtrucks y música en vivo en un ambiente único."
+        },
+        en: {
+            name: "Craft Beer Festival",
+            location: "San Vicente Park, Godoy Cruz",
+            date: "March 08 - 5:00 PM",
+            description: "Enjoy the best craft beers from Mendoza, a varied food truck selection, and live music in an unmatchable atmosphere."
+        }
     }
 ];

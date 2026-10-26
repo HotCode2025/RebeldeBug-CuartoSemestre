@@ -22,10 +22,45 @@ body { background: var(--bg-gray); }
     width: 100%; height: 100%;
     position: absolute; top: 0; left: 0;
     background: var(--bg-white); overflow-y: auto;
+body {
+    background-color: #f0f2f5; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+}
+
+.app-viewport {
+    width: 100%;
+    max-width: 412px; 
+    height: 100vh;
+    max-height: 850px; 
+    background-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border-radius: 32px; 
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 6px solid #1f2937; 
+}
+
+.app-screen {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    padding-bottom: 90px; 
+    box-sizing: border-box;
 }
 .app-screen.active { display: flex; z-index: 10; }
 .p-0 { padding: 0 !important; }
 
+<<<<<<< HEAD
 /* Botones y Utilitarios */
 .btn-primary { background: var(--primary); color: white; border: none; border-radius: 12px; padding: 16px; font-weight: 600; cursor: pointer; transition: 0.2s; }
 .w-100 { width: 100%; } .mt-auto { margin-top: auto; }
@@ -135,3 +170,278 @@ body { background: var(--bg-gray); }
         .with-nav { padding-left: 220px; }
     }
 }
+=======
+.app-screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* FONDO DE LA CORDILLERA Y LOS VIÑEDOS */
+#screen-preferences {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.98) 100%), 
+                      url('https://unsplash.com');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.lang-selector-wrapper {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2000;
+}
+
+.lang-selector-wrapper select {
+    padding: 6px 10px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.auth-header {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.auth-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    margin: 0;
+    color: #2d6a4f; 
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.auth-header p {
+    margin: 8px 0 0 0;
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.card-form h2 {
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.card-form .subtitle {
+    color: #4b5563;
+    font-size: 13px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #4b5563;
+}
+
+.input-group input {
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.preferences-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.pref-chip input {
+    display: none; 
+}
+
+.chip-content {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.85);
+    transition: all 0.2s ease;
+}
+
+.pref-chip input:checked + .chip-content {
+    border-color: #2d6a4f;
+    background-color: #e8f5e9;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(45, 106, 79, 0.15);
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1b4332;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.greeting {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.header-title {
+    font-size: 20px;
+    margin: 4px 0 0 0;
+}
+
+.avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.events-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #f3f4f6;
+}
+
+/* FIX DE LAS IMÁGENES EN LAS TARJETAS */
+.card-image {
+    height: 160px;
+    width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: block;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.card-body h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.meta-info p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #4b5563;
+}
+
+.description {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+/* CONTENEDOR DEL MAPA FIX */
+.map-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 480px; 
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-navigation {
+    display: none; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    border-top: 1px solid #f3f4f6;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bottom-navigation.visible {
+    display: flex;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.nav-item.active {
+    color: #2d6a4f;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+.nav-label {
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+>>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
