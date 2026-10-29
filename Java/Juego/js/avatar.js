@@ -26,6 +26,11 @@ let lienzo = mapa.getContext("2d");
 
 const seccionAtaque = document.getElementById("seleccionar-ataque");
 const personajeJugadorElemento = document.getElementById("personaje-jugador");
+const personajeEnemigoElemento = document.getElementById("personaje-enemigo");
+const imgJugadorCombate = document.getElementById("img-jugador-combate");
+const imgEnemigoCombate = document.getElementById("img-enemigo-combate");
+const tarjetaJugadorCombate = document.getElementById("tarjeta-jugador-combate");
+const tarjetaEnemigoCombate = document.getElementById("tarjeta-enemigo-combate");
 const vidasJugadorElemento = document.getElementById("vidas-jugador");
 const vidasEnemigoElemento = document.getElementById("vidas-enemigo");
 const botonFuego = document.getElementById("boton-fuego");
@@ -42,10 +47,10 @@ const botonSiguienteRonda = document.getElementById("boton-siguiente-ronda");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 
 // ==========================================
-// CLASE AVATAR
+// CLASE AVATAR ACTUALIZADA
 // ==========================================
 class Avatar {
-    constructor(nombre, poder, imagen, x = 20, y = 30) {
+    constructor(nombre, poder, imagen, x = 10, y = 10) {
         this.nombre = nombre;
         this.poder = poder;
         this.imagen = imagen;
@@ -59,13 +64,13 @@ class Avatar {
         this.mapaFoto.src = imagen;
     }
     
-    pintarAvatar() {
+    pintarAvatares() {
         lienzo.drawImage(this.mapaFoto, this.x, this.y, this.ancho, this.alto);
     }
 }
 
 // ==========================================
-// INSTANCIAS Y VARIABLES DE JUEGO
+// INSTANCIAS Y ENEMIGOS DEL MAPA
 // ==========================================
 const aang = new Avatar("Aang", AIRE, "./assets/aang.jpg");
 const katara = new Avatar("Katara", AGUA, "./assets/katara.jpg");
@@ -74,19 +79,11 @@ const toph = new Avatar("Toph", TIERRA, "./assets/toph.jpg");
 
 let avatares = [aang, katara, zuko, toph];
 
-// Enemigos en el mapa
-let zukoEnemigo = new Avatar("Zuko", FUEGO, "./assets/zuko.jpg", 150, 80);
-let kataraEnemigo = new Avatar("Katara", AGUA, "./assets/katara.jpg", 220, 150);
-let tophEnemigo = new Avatar("Toph", TIERRA, "./assets/toph.jpg", 50, 120);
-let aangEnemigo = new Avatar("Aang", AIRE, "./assets/aang.jpg", 250, 30);
-
-// Cargar creados desde localStorage
-const personajesGuardados = JSON.parse(localStorage.getItem("avatares"));
-if (personajesGuardados) {
-    personajesGuardados.forEach(personaje => {
-        avatares.push(new Avatar(personaje.nombre, personaje.poder, personaje.imagen));
-    });
-}
+// Enemigos con sus posiciones específicas
+let zukoEnemigo = new Avatar('Zuko', FUEGO, './assets/zuko.jpg', 80, 120);
+let kataraEnemigo = new Avatar('Katara', AGUA, './assets/katara.jpg', 150, 95);
+let aangEnemigo = new Avatar('Aang', AIRE, './assets/aang.jpg', 200, 190);
+let tophEnemigo = new Avatar('Toph', TIERRA, './assets/toph.jpg', 210, 200);
 
 let avatarJugador = null;
 let avatarEnemigo = null;
@@ -96,13 +93,13 @@ let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = './assets/mapa.jpg';
 
+// ==========================================
+// RENDERIZADO INICIAL Y MENÚS
+// ==========================================
 const personajeElegidoElemento = document.createElement("p");
 personajeElegidoElemento.id = "personaje-elegido";
 seccionSeleccionarPersonaje.insertBefore(personajeElegidoElemento, document.getElementById("botones-personaje"));
 
-// ==========================================
-// RENDERIZADO DE PANTALLAS INICIALES
-// ==========================================
 function aplicarColorPoder(tarjeta, personaje) {
     if (personaje.poder === FUEGO) tarjeta.classList.add("tarjeta-fuego");
     else if (personaje.poder === AGUA) tarjeta.classList.add("tarjeta-agua");
@@ -116,7 +113,6 @@ function mostrarPersonajes() {
         if (avatares.indexOf(personaje) >= 4) return;
         const tarjeta = document.createElement("div");
         tarjeta.classList.add("tarjeta-personaje");
-        aplicarColorPoder(tarjeta, tarjeta); 
         aplicarColorPoder(tarjeta, personaje);
         tarjeta.innerHTML = `
             <img src="${personaje.imagen}" alt="${personaje.nombre}">
@@ -139,56 +135,6 @@ function mostrarPersonajeElegido() {
     personajeElegidoElemento.textContent = `Personaje elegido: ${avatarJugador.nombre}`;
 }
 
-function mostrarSeccionPersonajesCreados() {
-    seccionSeleccionarPersonaje.style.display = "none";
-    seccionPersonajesCreados.style.display = "block";
-    listaPersonajesCreados.innerHTML = "";
-    
-    const creados = avatares.slice(4);
-    
-    if (creados.length === 0) {
-        listaPersonajesCreados.innerHTML = `<p>No hay personajes creados todavía</p>`;
-        return;
-    }
-    
-    creados.forEach(personaje => {
-        const tarjeta = document.createElement("div");
-        tarjeta.classList.add("tarjeta-personaje");
-        aplicarColorPoder(tarjeta, personaje);
-        
-        tarjeta.innerHTML = `
-            <img src="${personaje.imagen}" alt="${personaje.nombre}">
-            <h3>${personaje.nombre}</h3>
-            <p>${personaje.poder}</p>
-        `;
-        
-        // Botón Eliminar
-        const botonEliminar = document.createElement("button");
-        botonEliminar.innerHTML = "✖"; 
-        botonEliminar.classList.add("boton-eliminar");
-        
-        botonEliminar.addEventListener("click", (event) => {
-            event.stopPropagation(); 
-            const indiceReal = avatares.indexOf(personaje);
-            if (indiceReal !== -1) {
-                avatares.splice(indiceReal, 1);
-                localStorage.setItem("avatares", JSON.stringify(avatares.slice(4))); 
-                mostrarSeccionPersonajesCreados(); 
-            }
-        });
-        
-        tarjeta.appendChild(botonEliminar);
-
-        tarjeta.addEventListener("click", () => {
-            avatarJugador = personaje;
-            mostrarPersonajeElegido();
-            volverSeleccionPersonaje();
-        });
-        
-        listaPersonajesCreados.appendChild(tarjeta);
-    });
-}
-
 function volverSeleccionPersonaje() {
     if (intervalo) clearInterval(intervalo);
     seccionSeleccionarPersonaje.style.display = "block";
@@ -199,6 +145,46 @@ function volverSeleccionPersonaje() {
     seccionMensajes.style.display = "none";
     mostrarPersonajes();
     mostrarPersonajeElegido();
+}
+
+function mostrarSeccionPersonajesCreados() {
+    seccionSeleccionarPersonaje.style.display = "none";
+    seccionPersonajesCreados.style.display = "block";
+    listaPersonajesCreados.innerHTML = "";
+    const creados = avatares.slice(4);
+    if (creados.length === 0) {
+        listaPersonajesCreados.innerHTML = `<p>No hay personajes creados todavía</p>`;
+        return;
+    }
+    creados.forEach(personaje => {
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("tarjeta-personaje");
+        aplicarColorPoder(tarjeta, personaje);
+        tarjeta.innerHTML = `
+            <img src="${personaje.imagen}" alt="${personaje.nombre}">
+            <h3>${personaje.nombre}</h3>
+            <p>${personaje.poder}</p>
+        `;
+        const botonEliminar = document.createElement("button");
+        botonEliminar.innerHTML = "✖"; 
+        botonEliminar.classList.add("boton-eliminar");
+        botonEliminar.addEventListener("click", (event) => {
+            event.stopPropagation(); 
+            const indiceReal = avatares.indexOf(personaje);
+            if (indiceReal !== -1) {
+                avatares.splice(indiceReal, 1);
+                localStorage.setItem("avatares", JSON.stringify(avatares.slice(4))); 
+                mostrarSeccionPersonajesCreados(); 
+            }
+        });
+        tarjeta.appendChild(botonEliminar);
+        tarjeta.addEventListener("click", () => {
+            avatarJugador = personaje;
+            mostrarPersonajeElegido();
+            volverSeleccionPersonaje();
+        });
+        listaPersonajesCreados.appendChild(tarjeta);
+    });
 }
 
 function seleccionarPersonajeJugador() {
@@ -212,12 +198,18 @@ function seleccionarPersonajeJugador() {
 }
 
 // ==========================================
-// FUNCIONES DEL CANVAS / MAPA Y CHOQUE CON PERSONAJES
+// FUNCIONES DEL MAPA Y COLISIONES
 // ==========================================
 function iniciarMapa() {
     mapa.width = 320;
     mapa.height = 240;
     vidasJugador = VIDAS_INICIALES;
+    
+    // Reiniciar posiciones de los enemigos 
+    zukoEnemigo.x = 20; zukoEnemigo.y = 120;   
+    kataraEnemigo.x = 140; kataraEnemigo.y = 40;  
+    aangEnemigo.x = 250; aangEnemigo.y = 100;  
+    tophEnemigo.x = 160; tophEnemigo.y = 180;   
     
     intervalo = setInterval(pintarPersonaje, 50);
     window.addEventListener('keydown', sePresionoUnaTecla);
@@ -231,18 +223,17 @@ function pintarPersonaje() {
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
 
-    avatarJugador.pintarAvatar();
-    
-    zukoEnemigo.pintarAvatar();
-    kataraEnemigo.pintarAvatar();
-    tophEnemigo.pintarAvatar();
-    aangEnemigo.pintarAvatar();
+    avatarJugador.pintarAvatares();
+    zukoEnemigo.pintarAvatares();
+    kataraEnemigo.pintarAvatares();
+    aangEnemigo.pintarAvatares();
+    tophEnemigo.pintarAvatares();
 
     if (avatarJugador.velocidadX !== 0 || avatarJugador.velocidadY !== 0) {
         revisarColision(zukoEnemigo);
         revisarColision(kataraEnemigo);
-        revisarColision(tophEnemigo);
         revisarColision(aangEnemigo);
+        revisarColision(tophEnemigo);
     }
 }
 
@@ -252,20 +243,21 @@ function revisarColision(enemigo) {
     const derechaEnemigo = enemigo.x + enemigo.ancho;
     const izquierdaEnemigo = enemigo.x;
 
-    const arribaAvatar = avatarJugador.y;
-    const abajoAvatar = avatarJugador.y + avatarJugador.alto;
-    const derechaAvatar = avatarJugador.x + avatarJugador.ancho;
-    const izquierdaAvatar = avatarJugador.x;
+    const arribaPersonaje = avatarJugador.y;
+    const abajoPersonaje = avatarJugador.y + avatarJugador.alto;
+    const derechaPersonaje = avatarJugador.x + avatarJugador.ancho;
+    const izquierdaPersonaje = avatarJugador.x;
 
     if (
-        abajoAvatar < arribaEnemigo ||
-        arribaAvatar > abajoEnemigo ||
-        derechaAvatar < izquierdaEnemigo ||
-        izquierdaAvatar > derechaEnemigo
+        abajoPersonaje < arribaEnemigo ||
+        arribaPersonaje > abajoEnemigo ||
+        derechaPersonaje < izquierdaEnemigo ||
+        izquierdaPersonaje > derechaEnemigo
     ) {
         return; 
     }
 
+    // SI HAY COLISIÓN
     detenerMovimiento();
     clearInterval(intervalo);
     avatarEnemigo = enemigo;
@@ -278,8 +270,10 @@ function moverIzquierda() { avatarJugador.velocidadX = -5; }
 function moverAbajo() { avatarJugador.velocidadY = 5; }
 function moverArriba() { avatarJugador.velocidadY = -5; }
 function detenerMovimiento() {
-    avatarJugador.velocidadX = 0;
-    avatarJugador.velocidadY = 0;
+    if(avatarJugador) {
+        avatarJugador.velocidadX = 0;
+        avatarJugador.velocidadY = 0;
+    }
 }
 function sePresionoUnaTecla(event) {
     switch (event.key) {
@@ -291,15 +285,25 @@ function sePresionoUnaTecla(event) {
 }
 
 // ==========================================
-// LÓGICA DE COMBATE MULTI-RONDA
+// LÓGICA DE COMBATE MULTI-RONDA Y ANIMACIONES
 // ==========================================
 function mostrarPantallaAtaque() {
     seccionVerMapa.style.display = 'none';
     seccionMensajes.style.display = 'none';
     seccionAtaque.style.display = 'flex';
     
-    personajeJugadorElemento.textContent = `Tu personaje: ${avatarJugador.nombre}`;
+    // Asignar nombres y fotos en la arena
+    personajeJugadorElemento.textContent = avatarJugador.nombre;
+    imgJugadorCombate.src = avatarJugador.imagen;
+    
+    personajeEnemigoElemento.textContent = avatarEnemigo.nombre;
+    imgEnemigoCombate.src = avatarEnemigo.imagen;
+    
     actualizarVidasUI();
+    
+    // Limpiar clases de animación previas por si acaso
+    tarjetaJugadorCombate.className = "tarjeta-combate";
+    tarjetaEnemigoCombate.className = "tarjeta-combate";
 }
 
 function obtenerEmoji(poder) {
@@ -316,8 +320,19 @@ function realizarAtaque(poderJugador) {
     
     let resultado = "";
     
+    // Limpiamos animaciones viejas
+    tarjetaJugadorCombate.className = "tarjeta-combate";
+    tarjetaEnemigoCombate.className = "tarjeta-combate";
+    
+    // Forzamos un pequeño reflujo (reflow) para reiniciar las animaciones
+    void tarjetaJugadorCombate.offsetWidth;
+    void tarjetaEnemigoCombate.offsetWidth;
+
+    // Evaluamos el resultado y asignamos animaciones
     if (poderJugador === poderEnemigo) {
         resultado = "¡Empate! 😐";
+        tarjetaJugadorCombate.classList.add("animacion-empate");
+        tarjetaEnemigoCombate.classList.add("animacion-empate");
     } else if (
         (poderJugador === FUEGO && poderEnemigo === TIERRA) ||
         (poderJugador === AGUA && poderEnemigo === FUEGO) ||
@@ -326,13 +341,22 @@ function realizarAtaque(poderJugador) {
     ) {
         resultado = "¡Ganaste esta ronda! 🥳";
         vidasEnemigo--;
+        tarjetaJugadorCombate.classList.add("animacion-ataque");
+        tarjetaEnemigoCombate.classList.add("animacion-daño");
     } else {
         resultado = "¡Perdiste esta ronda! 🤕";
         vidasJugador--;
+        tarjetaEnemigoCombate.classList.add("animacion-ataque");
+        tarjetaJugadorCombate.classList.add("animacion-daño");
     }
 
     actualizarVidasUI();
-    mostrarMensajeRonda(poderJugador, poderEnemigo, resultado);
+    
+    // Pausamos 800 milisegundos para que el usuario disfrute la animación
+    // antes de ocultar la arena y mostrar el mensaje final
+    setTimeout(() => {
+        mostrarMensajeRonda(poderJugador, poderEnemigo, resultado);
+    }, 800);
 }
 
 function actualizarVidasUI() {
@@ -356,6 +380,8 @@ function mostrarMensajeRonda(poderJugador, poderEnemigo, resultado) {
         if (vidasJugador === 0) {
             resultadoRonda.textContent = "☠️ ¡HAS PERDIDO LA BATALLA! ☠️";
         } else {
+            // Mandamos al enemigo fuera del mapa para que desaparezca al volver a jugar
+            avatarEnemigo.x = -500; 
             resultadoRonda.textContent = "🏆 ¡HAS GANADO LA BATALLA! 🏆";
         }
     } else {
@@ -375,17 +401,29 @@ botonMostrarCrear.addEventListener("click", () => {
 botonMostrarCreados.addEventListener("click", mostrarSeccionPersonajesCreados);
 botonVolverPersonajesCreados.addEventListener("click", volverSeleccionPersonaje);
 
-// Botones de Ataque
 botonFuego.addEventListener("click", () => realizarAtaque(FUEGO));
 botonAgua.addEventListener("click", () => realizarAtaque(AGUA));
 botonTierra.addEventListener("click", () => realizarAtaque(TIERRA));
 botonAire.addEventListener("click", () => realizarAtaque(AIRE));
 
-// Botones de flujo de rondas
 botonSiguienteRonda.addEventListener("click", mostrarPantallaAtaque);
 botonReiniciar.addEventListener("click", () => {
-    location.reload(); 
+    if(vidasJugador === 0) {
+        location.reload(); // Si mueres, recarga todo
+    } else {
+        // Si ganas, volves al mapa para pelear con otro
+        seccionMensajes.style.display = 'none';
+        seccionVerMapa.style.display = 'flex';
+        iniciarMapa();
+    }
 });
 
-// INICIAR AL CARGAR
+// Cargar personajes en localStorage
+const creados = JSON.parse(localStorage.getItem("avatares"));
+if (creados) {
+    creados.forEach(personaje => {
+        avatares.push(new Avatar(personaje.nombre, personaje.poder, personaje.imagen));
+    });
+}
+
 volverSeleccionPersonaje();

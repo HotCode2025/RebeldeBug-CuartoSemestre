@@ -85,16 +85,28 @@
     </section>
 
     <!-- SELECCIONAR ATAQUE / ARENA DE COMBATE -->
+   <!-- ==========================================
+         SELECCIONAR ATAQUE / ARENA DE COMBATE
+    =========================================== -->
     <section id="seleccionar-ataque" style="display: none;">
         <h2>⚔️ Elige tu ataque</h2>
         
+        <!-- Aquí agregamos los recuadros para las animaciones -->
         <div id="datos-combate">
-            <div id="personaje-jugador" class="etiqueta-pill-grande">Tu personaje: </div>
+            <div id="tarjeta-jugador-combate" class="tarjeta-combate">
+                <img id="img-jugador-combate" src="" alt="Jugador">
+                <p id="personaje-jugador" class="etiqueta-pill-grande">Jugador</p>
+            </div>
+            
+            <div id="tarjeta-enemigo-combate" class="tarjeta-combate">
+                <img id="img-enemigo-combate" src="" alt="Enemigo">
+                <p id="personaje-enemigo" class="etiqueta-pill-grande">Enemigo</p>
+            </div>
         </div>
         
         <div id="vidas">
-            <p>💖 Vidas del jugador: <span id="vidas-jugador">3</span></p>
-            <p>💖 Vidas del enemigo: <span id="vidas-enemigo">3</span></p>
+            <p>💖 Vidas: <span id="vidas-jugador">3</span></p>
+            <p>💖 Vidas: <span id="vidas-enemigo">3</span></p>
         </div>
         
         <h3>Selecciona tu ataque:</h3>
