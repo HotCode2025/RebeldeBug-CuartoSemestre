@@ -20,3 +20,5 @@ venv/Script/activate #Activa el entorno en window
 pip3 install -r requirements.txt #Instala las dependencias el -r significa reutilizar
 python3 main.py #Ejecutamos el programa
 ```
+
+# Probando Pull Request desde GitHub
