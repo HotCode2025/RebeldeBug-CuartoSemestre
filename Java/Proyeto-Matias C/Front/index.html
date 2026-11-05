@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6d4bd1" />
+  <title>ToDo API | Gestor de tareas</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/img/rocket.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="side-decoration" aria-hidden="true">
+      <div class="brand-mark">✦</div>
+      <span class="side-word">ORGANIZÁ · CREÁ · AVANZÁ</span>
+      <div class="side-orbit orbit-one"></div><div class="side-orbit orbit-two"></div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="Inicio">
+          <span class="brand-icon">✓</span>
+          <span>ToDo <span class="brand-accent">API</span></span>
+        </a>
+        <span class="topbar-label"><span class="online-dot"></span> TU ESPACIO PERSONAL</span>
+      </header>
+
+      <div class="content" id="inicio">
+        <section class="welcome">
+          <div>
+            <p class="eyebrow">UN PASO A LA VEZ</p>
+            <h1>Hola, ¿qué vamos a<br /><span>lograr hoy?</span></h1>
+            <p class="welcome-copy">Organizá tus pendientes y convertí tus planes en logros.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-circle"><span>✦</span></div>
+            <div class="art-card art-card-one">✓</div><div class="art-card art-card-two">✧</div>
+          </div>
+        </section>
+
+        <section class="stats" aria-label="Resumen de tareas">
+          <article class="stat-card"><span class="stat-icon lavender">▤</span><div><strong data-total>0</strong><span>Tareas en total</span></div></article>
+          <article class="stat-card"><span class="stat-icon lilac">✓</span><div><strong data-completed>0</strong><span>Completadas</span></div></article>
+          <article class="stat-card"><span class="stat-icon peach">◷</span><div><strong data-pending>0</strong><span>Pendientes</span></div></article>
+        </section>
+
+        <section class="task-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">TU LISTA</p><h2>Mis tareas</h2></div>
+            <span class="list-tag">● En seguimiento</span>
+          </div>
+          <form class="task-form" data-task-form>
+            <label class="field task-name-field"><span>¿Qué necesitás hacer?</span><input type="text" name="task" class="inputForm" placeholder="Ej. Preparar el trabajo práctico..." autocomplete="off" maxlength="256" data-form-input required /></label>
+            <label class="field date-field"><span>Fecha y hora</span><input type="datetime-local" name="date" data-form-date required /></label>
+            <button type="submit" class="btnCreate" data-form-btn><span>＋</span> Agregar tarea</button>
+          </form>
+          <div class="list-toolbar"><span>ACTIVIDADES PROGRAMADAS</span><span class="toolbar-line"></span></div>
+          <ul class="cardsList" data-list aria-live="polite">
+            <li class="loading-state">Cargando tus tareas...</li>
+          </ul>
+          <footer class="panel-footer"><span>Hecho para ayudarte a avanzar.</span><span class="footer-sparkle">✦</span></footer>
+        </section>
+        <p class="page-footer">TODO API <span>•</span> ORGANIZÁ TU TIEMPO, A TU MANERA</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./assets/script/script.js"></script>
+</body>
+</html>

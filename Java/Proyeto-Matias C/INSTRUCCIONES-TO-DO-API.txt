@@ -1,0 +1,60 @@
+TODO API - APLICACION DE GESTION DE TAREAS
+========================================
+
+ESTRUCTURA
+----------
+Back/ToDo API       Backend Java + Spring Boot (abrir esta carpeta en IntelliJ)
+Front/              Interfaz HTML, CSS y JavaScript
+db_todo_api.sql     Script de base de datos de referencia
+Tasks.postman_collection.json  Colección para probar la API
+
+REQUISITOS
+----------
+- JDK 17
+- IntelliJ IDEA
+- MySQL Server (por ejemplo, MySQL Workbench o XAMPP)
+- Navegador web
+
+PASO 1 - CONFIGURAR MYSQL
+-------------------------
+1. Iniciá el servidor MySQL.
+2. Abrí MySQL Workbench/phpMyAdmin y comprobá que MySQL esté funcionando.
+3. El backend está configurado para crear db_todo_api si no existe.
+
+PASO 2 - CONFIGURAR EL BACKEND
+------------------------------
+1. En IntelliJ, abrí la carpeta: Back/ToDo API
+2. Esperá que Maven descargue las dependencias.
+3. Entrá en src/main/resources.
+4. Copiá application.properties.example y renombrá la copia a application.properties.
+5. Abrí application.properties y completá tus credenciales locales de MySQL.
+   Si tu usuario de MySQL no es root, modificá también spring.datasource.username.
+6. Ejecutá TodoAppApplication.java.
+7. La API debería quedar disponible en http://localhost:8080
+8. Swagger: http://localhost:8080/swagger-ui/index.html
+
+PASO 3 - ABRIR EL FRONTEND
+--------------------------
+1. Abrí la carpeta Front.
+2. Abrí index.html con Live Server (recomendado desde Visual Studio Code),
+   o serví la carpeta Front con cualquier servidor web local.
+3. No abras index.html haciendo doble clic: los módulos JavaScript necesitan
+   ejecutarse desde un servidor local.
+
+FUNCIONALIDADES
+----------------
+- Crear tareas con título, fecha y hora.
+- Consultar las tareas almacenadas en MySQL mediante GET /all.
+- Marcar tareas como realizadas o pendientes.
+- Eliminar tareas con confirmación.
+- Ver el total de tareas, completadas y pendientes.
+- Agrupar y ordenar tareas por fecha y horario.
+
+IMPORTANTE
+----------
+- El frontend consume la API en http://127.0.0.1:8080/api/v1/tasks/.
+  Si cambiás el puerto o la dirección del backend, editá Front/assets/script/data/path.js.
+- La conexión depende de que MySQL esté iniciado y las credenciales sean correctas.
+- No se incluyeron contraseñas reales. Debés completar la tuya localmente.
+- Se mantuvieron los endpoints originales del profesor; no se cambió el contrato de la API.
+- La primera ejecución requiere conexión a Internet para cargar SweetAlert2 y las fuentes.
