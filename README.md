@@ -10,7 +10,7 @@ Nuestro objetivo es aprender, experimentar, resolver problemas y construir soluc
 
 ## 👥 Integrantes
 
-| Integrante | GitHub |
+| Integrante | 
 |---|---|
 | Melina Gallo | 
 | Zoe Garnica | 
