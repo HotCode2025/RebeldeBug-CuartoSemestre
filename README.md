@@ -10,11 +10,14 @@ Nuestro objetivo es aprender, experimentar, resolver problemas y construir soluc
 
 ## 👥 Integrantes
 
-** Integrantes ** 
+**Integrantes** 
 
  Melina Gallo  
+ 
  Zoe Garnica 
- Micaela Aramayo  
+ 
+ Micaela Aramayo 
+ 
  Jimena Perez  
 
 ## 🎯 Objetivo del repositorio
