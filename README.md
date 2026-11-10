@@ -10,8 +10,6 @@ Nuestro objetivo es aprender, experimentar, resolver problemas y construir soluc
 
 ## 👥 Integrantes
 
-**Integrantes** 
-
  Melina Gallo  
  
  Zoe Garnica 
