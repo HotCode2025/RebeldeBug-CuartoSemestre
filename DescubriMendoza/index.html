@@ -8,19 +8,10 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <!-- Tipografías Modernas -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet Local (A prueba de bloqueos de internet) -->
     <link rel="stylesheet" href="leaflet.css">
-    
-    <!-- Hoja de estilos local -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,61 +31,10 @@
                     <h1>DESCUBRÍ<br>MENDOZA</h1>
                 </div>
                 <p>Tu próxima aventura comienza acá</p>
-                <button class="btn-primary" onclick="navigateTo('screen-login')">Comenzar</button>
+                <button class="btn-primary" onclick="navigateTo('screen-preferences')">Comenzar</button>
             </div>
         </section>
 
-<<<<<<< HEAD
-        <!-- PANTALLA 2: LOGIN / REGISTRO -->
-        <section id="screen-login" class="app-screen">
-            <div class="auth-container">
-                <div class="logo-dark">
-                    <i class="ph ph-mountains"></i>
-                    <h2>DESCUBRÍ<br>MENDOZA</h2>
-                </div>
-                <h3>¡Bienvenido!</h3>
-                <p class="subtitle">Iniciá sesión para continuar</p>
-                
-                <div class="input-group">
-                    <i class="ph ph-envelope"></i>
-                    <input type="email" id="email" placeholder="Usuario o email">
-                </div>
-                <div class="input-group">
-                    <i class="ph ph-lock-key"></i>
-                    <input type="password" id="password" placeholder="Contraseña">
-                </div>
-                <button class="btn-primary w-100" onclick="navigateTo('screen-preferences')">Iniciar sesión</button>
-                <p class="auth-link">¿No tenés cuenta? <b>Registrate</b></p>
-            </div>
-        </section>
-
-        <!-- PANTALLA 4: PREFERENCIAS -->
-        <section id="screen-preferences" class="app-screen">
-            <div class="preferences-content">
-                <h2>Contanos qué<br>te interesa</h2>
-                <p class="subtitle">Seleccioná tus preferencias para recomendarte mejores experiencias.</p>
-                
-                <div class="preferences-grid">
-                    <label class="pref-chip"><input type="checkbox" value="Music"><div class="chip-content"><i class="ph ph-music-note"></i><span>Música</span></div></label>
-                    <label class="pref-chip"><input type="checkbox" value="Food"><div class="chip-content"><i class="ph ph-fork-knife"></i><span>Gastronomía</span></div></label>
-                    <label class="pref-chip"><input type="checkbox" value="Wine"><div class="chip-content"><i class="ph ph-wine"></i><span>Vino</span></div></label>
-                    <label class="pref-chip"><input type="checkbox" value="Nature"><div class="chip-content"><i class="ph ph-tree"></i><span>Aire Libre</span></div></label>
-                    <label class="pref-chip"><input type="checkbox" value="Sports"><div class="chip-content"><i class="ph ph-person-simple-bike"></i><span>Deportes</span></div></label>
-                    <label class="pref-chip"><input type="checkbox" value="Culture"><div class="chip-content"><i class="ph ph-bank"></i><span>Cultura</span></div></label>
-                </div>
-                <button class="btn-primary w-100 mt-auto" onclick="savePreferences()">Guardar y continuar</button>
-            </div>
-        </section>
-
-        <!-- PANTALLA 5: HOME (Responsive) -->
-        <section id="screen-home" class="app-screen with-nav">
-            <header class="home-header">
-                <div class="greeting-box">
-                    <h1>¡Hola, Viajero!</h1>
-                    <p>¿Qué vas a descubrir hoy?</p>
-                </div>
-                <div class="user-avatar"><img src="https://ui-avatars.com/api/?name=Viajero&background=4A7844&color=fff&rounded=true" alt="Perfil"></div>
-=======
         <!-- SELECTOR DE IDIOMA GLOBAL -->
         <div class="lang-selector-wrapper">
             <select id="lang-selector" onchange="changeLanguage(this.value)">
@@ -104,7 +44,7 @@
         </div>
 
         <!-- 1. PANTALLA DE PREFERENCIAS -->
-        <section id="screen-preferences" class="app-screen active">
+        <section id="screen-preferences" class="app-screen">
             <header class="auth-header">
                 <h1 id="txt-main-title">DESCUBRÍ<br>MENDOZA</h1>
                 <p id="txt-main-subtitle">Tu guía de experiencias</p>
@@ -170,7 +110,6 @@
                     <h2 class="header-title" id="txt-home-title">Recomendaciones para vos</h2>
                 </div>
                 <div class="avatar-placeholder">🏠</div>
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
             </header>
             
             <div class="home-content">
@@ -191,16 +130,11 @@
             </div>
         </section>
 
-<<<<<<< HEAD
-        <!-- PANTALLA 9: MAPA -->
-        <section id="screen-map" class="app-screen with-nav p-0">
-=======
         <!-- 3. PANTALLA MAPA INTERACTIVO -->
         <section id="screen-map" class="app-screen">
             <header class="app-header">
                 <h2 class="header-title" id="txt-map-title">Mapa de Experiencias</h2>
             </header>
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
             <div class="map-wrapper">
                 <div id="map"></div>
                 <div class="map-filters">
@@ -211,49 +145,6 @@
             </div>
         </section>
 
-<<<<<<< HEAD
-        <!-- PANTALLA 10: PERFIL Y RECOMPENSAS -->
-        <section id="screen-profile" class="app-screen with-nav">
-            <div class="profile-header">
-                <img src="https://ui-avatars.com/api/?name=Viajero&background=4A7844&color=fff&rounded=true" alt="Perfil" class="profile-img">
-                <h2>Viajero</h2>
-                <p>viajero@email.com</p>
-            </div>
-            
-            <!-- Sistema de Puntos -->
-            <div class="rewards-card">
-                <div class="points-header">
-                    <i class="ph-fill ph-star"></i>
-                    <div>
-                        <h4>1.250 Puntos Viajero</h4>
-                        <p>Nivel Explorador</p>
-                    </div>
-                </div>
-                <div class="rewards-actions">
-                    <button class="btn-outline">Canjear 500pts = 10% OFF en Bodegas</button>
-                    <button class="btn-outline">Canjear 1000pts = Entrada 2x1</button>
-                </div>
-            </div>
-
-            <div class="profile-menu">
-                <button><i class="ph ph-heart"></i> Mis Favoritos</button>
-                <button><i class="ph ph-ticket"></i> Mis Reservas</button>
-                <button><i class="ph ph-sliders"></i> Mis Preferencias</button>
-                <button onclick="logout()" class="text-danger"><i class="ph ph-sign-out"></i> Cerrar sesión</button>
-            </div>
-        </section>
-
-        <!-- NAVEGACIÓN (Bottom en Móvil, Lateral en Desktop) -->
-        <nav id="main-nav" class="navigation">
-            <button class="nav-item active" onclick="navigateTo('screen-home', this)">
-                <i class="ph-fill ph-house"></i><span>Inicio</span>
-            </button>
-            <button class="nav-item" onclick="navigateTo('screen-map', this)">
-                <i class="ph ph-map-trifold"></i><span>Explorar</span>
-            </button>
-            <button class="nav-item" onclick="navigateTo('screen-profile', this)">
-                <i class="ph ph-user"></i><span>Perfil</span>
-=======
         <!-- BARRA DE NAVEGACIÓN INFERIOR FIJA -->
         <nav id="bottom-nav" class="bottom-navigation">
             <button class="nav-item active" onclick="navigateTo('screen-home', this)">
@@ -267,18 +158,13 @@
             <button class="nav-item" onclick="logout()">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label" id="nav-logout">Salir</span>
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
             </button>
         </nav>
     </main>
-<<<<<<< HEAD
-    <script src="events.js"></script> <!-- Asegurate de tener tu archivo events.js de antes -->
-=======
 
     <!-- Scripts locales cargados de forma segura -->
     <script src="leaflet.js"></script>
     <script src="events.js"></script>
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
     <script src="app.js"></script>
 </body>
 </html>

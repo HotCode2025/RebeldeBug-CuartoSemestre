@@ -1,18 +1,6 @@
 let mapInstance = null;
-let currentEvents = []; 
-
-// Función simulada para traer eventos de una Base de Datos real o API (ej. Eventbrite)
-async function fetchEventosReales() {
-    try {
-        // Para evento real hariamos: const response = await fetch('https://backend');
-        // return await response.json();
-        
-        // Por ahora usamos el array local 'events' del archivo events.js para que funcione el prototipo
-        return events; 
-    } catch (error) {
-        console.error("Error cargando eventos reales", error);
-        return [];
-let currentLang = "es"; 
+let currentEvents = [];
+let currentLang = "es";
 let activePreferences = [];
 
 const translations = {
@@ -56,7 +44,6 @@ const translations = {
 
 function changeLanguage(lang) {
     currentLang = lang;
-    
     document.getElementById("txt-main-title").innerHTML = translations[lang].mainTitle;
     document.getElementById("txt-main-subtitle").innerText = translations[lang].mainSubtitle;
     document.getElementById("txt-form-title").innerHTML = translations[lang].formTitle;
@@ -86,39 +73,24 @@ function changeLanguage(lang) {
     }
 }
 
-function savePreferences(){
+function savePreferences() {
+    const username = document.getElementById("username").value.trim();
     const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-<<<<<<< HEAD
-    let preferences = Array.from(checked).map(item => item.value);
-=======
-    activePreferences = [];
 
+    activePreferences = [];
     checked.forEach(item => {
         activePreferences.push(item.value);
     });
 
-    if(username === ""){
+    if (username === "") {
         alert(translations[currentLang].alertName);
         return;
     }
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
 
-    if(activePreferences.length === 0){
+    if (activePreferences.length === 0) {
         alert(translations[currentLang].alertPref);
         return;
     }
-<<<<<<< HEAD
-    
-    // Mostramos la barra de navegación lateral/inferior
-    document.getElementById("main-nav").classList.add("visible");
-    
-    loadAndShowEvents(preferences);
-    navigateTo('screen-home');
-    initMap();
-}
-
-async function loadAndShowEvents(preferences) {
-=======
 
     document.getElementById("display-name").innerText = username;
     showRecommendedEvents(activePreferences);
@@ -143,49 +115,49 @@ function navigateTo(screenId, element) {
         element.classList.add('active');
     }
 
-    if(screenId === 'screen-map' && mapInstance) {
+    if (screenId === 'screen-map' && mapInstance) {
         setTimeout(() => {
             mapInstance.invalidateSize();
         }, 300);
     }
 }
 
-function showRecommendedEvents(preferences){
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
-    const container = document.getElementById("events-container");
-    container.innerHTML = "<p>Cargando eventos desde el servidor...</p>"; // Indicador de carga
-    
-    // Llamada a la "API"
-    currentEvents = await fetchEventosReales();
-    
-    container.innerHTML = "";
-    const filteredEvents = currentEvents.filter(event => preferences.includes(event.category));
+async function fetchEventosReales() {
+    try {
+        return events;
+    } catch (error) {
+        console.error("Error cargando eventos reales", error);
+        return [];
+    }
+}
 
-    if(filteredEvents.length === 0){
-<<<<<<< HEAD
-        container.innerHTML = `<p style="grid-column: 1/-1; color: var(--text-muted);">No encontramos eventos para tus intereses.</p>`;
-=======
+async function showRecommendedEvents(preferences) {
+    const container = document.getElementById("events-container");
+    container.innerHTML = "<p>Cargando eventos desde el servidor...</p>";
+
+    currentEvents = await fetchEventosReales();
+    container.innerHTML = "";
+
+    // Normalizamos a minúsculas para que "Vino", "vino" y "Wine" coincidan
+    const prefsLower = preferences.map(p => p.toLowerCase().trim());
+
+    const filteredEvents = currentEvents.filter(event => {
+        if (!event.category) return false;
+        return prefsLower.includes(event.category.toLowerCase().trim());
+    });
+
+    if (filteredEvents.length === 0) {
         container.innerHTML = `
             <div class="empty-state">
                 <p>${translations[currentLang].emptyState}</p>
             </div>
         `;
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
         return;
     }
 
     filteredEvents.forEach(event => {
-<<<<<<< HEAD
-        container.innerHTML += `
-            <div class="event-card">
-                <div class="card-image" style="background-image: url('${event.image}')"></div>
-                <div class="card-body">
-                    <h4>${event.name}</h4>
-                    <p><i class="ph ph-map-pin"></i> ${event.location} • ${event.date}</p>
-                    <span class="price">Desde $5.000</span>
-=======
-        let imageUrl = event.image; 
-        let data = event[currentLang]; 
+        let imageUrl = event.image;
+        let data = event[currentLang] || event["es"];
 
         container.innerHTML += `
             <div class="event-card">
@@ -197,49 +169,13 @@ function showRecommendedEvents(preferences){
                         <p class="meta-location">📍 ${data.location}</p>
                     </div>
                     <p class="description">${data.description}</p>
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
                 </div>
             </div>
         `;
     });
 }
 
-<<<<<<< HEAD
-function navigateTo(screenId, element) {
-    document.querySelectorAll('.app-screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-
-    const targetScreen = document.getElementById(screenId);
-    if (targetScreen) {
-        targetScreen.classList.add('active');
-    }
-
-    if (screenId === 'screen-map' && mapInstance) {
-        setTimeout(() => { mapInstance.invalidateSize(); }, 200); 
-    }
-
-    if (element && element.classList.contains('nav-item')) {
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active');
-            let icon = item.querySelector('i');
-            icon.classList.remove('ph-fill');
-            icon.classList.add('ph');
-        });
-        element.classList.add('active');
-        let activeIcon = element.querySelector('i');
-        activeIcon.classList.remove('ph');
-        activeIcon.classList.add('ph-fill');
-    }
-}
-
-function initMap(){
-    if (mapInstance) return;
-    mapInstance = L.map('map', { zoomControl: false }).setView([-32.8895, -68.8458], 11);
-    
-    // Mapa libre de OpenStreetMap (No requiere API KEY).
-=======
-function initMap(){
+function initMap() {
     if (mapInstance) {
         mapInstance.invalidateSize();
         return;
@@ -249,25 +185,12 @@ function initMap(){
         zoomControl: true
     }).setView([-32.8895, -68.8458], 11);
 
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(mapInstance);
 
-    const customPin = L.divIcon({
-        className: 'custom-pin',
-        html: `<div style="background-color: var(--primary); width: 16px; height: 16px; border-radius: 50%; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
-        iconSize: [16, 16],
-        iconAnchor: [8, 8]
-    });
-
     events.forEach(event => {
-<<<<<<< HEAD
-        L.marker([event.lat, event.lng], {icon: customPin})
-            .addTo(mapInstance)
-            .bindPopup(`<b style="font-family: 'Poppins', sans-serif;">${event.name}</b><br>${event.location}`);
-=======
-        let data = event[currentLang];
+        let data = event[currentLang] || event["es"];
         L.marker([event.lat, event.lng])
         .addTo(mapInstance)
         .bindPopup(`
@@ -277,20 +200,13 @@ function initMap(){
                 <p><strong>${translations[currentLang].lblDate}</strong> ${data.date}</p>
             </div>
         `);
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
     });
 }
 
 function logout() {
-<<<<<<< HEAD
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    document.getElementById("main-nav").classList.remove("visible");
-    navigateTo('screen-login');
-=======
     document.getElementById("username").value = "";
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
     document.getElementById("bottom-nav").classList.remove("visible");
     activePreferences = [];
     navigateTo('screen-preferences');
->>>>>>> 6359760 (deploy en netlify imagenes de fondo y eventos, revisar, falla en imagenes a pesar de actualizar el deploy i zippear)
 }
