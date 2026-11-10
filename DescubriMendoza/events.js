@@ -7,7 +7,7 @@ const events = [
         description: "Degustación de los mejores Malbecs de la región en bodegas boutique.",
         lat: -32.8895,
         lng: -68.8458,
-        image: "https://images.unsplash.com/photo-1510812431401-46f7775bc793?q=80&w=500&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1510812431401-46f7775bc793?auto=format&fit=crop&w=800&q=80"
     },
     {
         name: "Concierto de Jazz",
@@ -17,7 +17,7 @@ const events = [
         description: "Una noche mágica con los mejores exponentes del jazz local e internacional.",
         lat: -32.9777,
         lng: -68.7805,
-        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=800&q=80"
     },
     {
         name: "Aventura en Aconcagua",
@@ -27,7 +27,7 @@ const events = [
         description: "Trekking guiado por los senderos más impactantes de la cordillera.",
         lat: -32.9511,
         lng: -69.2017,
-        image: "https://images.unsplash.com/photo-1464822759023-//q=80&w=500&auto=format&fit=crop" // Reemplazar con cordillera
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
     },
     {
         name: "Feria Gastronómica",
@@ -37,7 +37,7 @@ const events = [
         description: "Sabores tradicionales mendocinos y cocina de autor en un solo lugar.",
         lat: -32.8833,
         lng: -68.8333,
-        image: "https://images.unsplash.com/photo-1504674900247-087707b88efb?q=80&w=500&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1504674900247-087707b88efb?auto=format&fit=crop&w=800&q=80"
     },
     {
         name: "Torneo de Pádel",
@@ -47,11 +47,13 @@ const events = [
         description: "El evento deportivo más esperado del año con premios increíbles.",
         lat: -32.8908,
         lng: -68.8790,
-        image: "https://images.unsplash.com/photo-1554068865-83d35d664171?q=80&w=500&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1554068865-83d35d664171?auto=format&fit=crop&w=800&q=80"
+    },
+    {
         category: "Wine",
         lat: -32.8895,
         lng: -68.8458,
-        image: "https://mendoza.gov.ar",
+        image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=800&q=80",
         es: {
             name: "Festival de la Vendimia 2024",
             location: "Teatro Griego Frank Romero Day",
@@ -69,7 +71,7 @@ const events = [
         category: "Music",
         lat: -33.0333,
         lng: -68.8667,
-        image: "https://unsplash.com",
+        image: "https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=800&q=80",
         es: {
             name: "Sunset entre viñedos",
             location: "Luján de Cuyo, Mendoza",
@@ -87,7 +89,7 @@ const events = [
         category: "Nature",
         lat: -32.8272,
         lng: -68.9325,
-        image: "https://unsplash.com",
+        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80",
         es: {
             name: "Caminata al Cerro Arco",
             location: "Las Heras, El Challao",
@@ -105,7 +107,7 @@ const events = [
         category: "Music",
         lat: -32.8896,
         lng: -68.8447,
-        image: "https://unsplash.com",
+        image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=800&q=80",
         es: {
             name: "Ciclo de Música Clásica",
             location: "Teatro Independencia, Ciudad",
@@ -123,7 +125,7 @@ const events = [
         category: "Food",
         lat: -32.9234,
         lng: -68.8489,
-        image: "https://unsplash.com",
+        image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80",
         es: {
             name: "Festival de la Cerveza Artesanal",
             location: "Parque San Vicente, Godoy Cruz",
@@ -138,3 +140,5 @@ const events = [
         }
     }
 ];
+
+export default events;
