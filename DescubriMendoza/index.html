@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="leaflet.css">
+    <!--<link rel="stylesheet" href="leaflet.css">
+    SE DEJA INACTIVO PARA COMPROBAR BIBLIOTECA REAL-->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,10 +29,10 @@
             <div class="splash-content">
                 <div class="logo">
                     <i class="ph ph-mountains"></i>
-                    <h1>DESCUBRÍ<br>MENDOZA</h1>
+                    <h1 id="txt-splash-title">DESCUBRÍ<br>MENDOZA</h1>
                 </div>
-                <p>Tu próxima aventura comienza acá</p>
-                <button class="btn-primary" onclick="navigateTo('screen-preferences')">Comenzar</button>
+            <p id="txt-splash-subtitle">Tu próxima aventura comienza acá</p>
+            <button class="btn-primary" id="btn-splash-start" onclick="navigateTo('screen-preferences')">Comenzar</button>
             </div>
         </section>
 
@@ -156,14 +157,13 @@
                 <span class="nav-label" id="nav-map">Mapa</span>
             </button>
             <button class="nav-item" onclick="logout()">
-                <span class="nav-icon">⚙️</span>
+                <span class="nav-icon">↩️</span>
                 <span class="nav-label" id="nav-logout">Salir</span>
             </button>
         </nav>
     </main>
 
     <!-- Scripts locales cargados de forma segura -->
-    <script src="leaflet.js"></script>
     <script src="events.js"></script>
     <script src="app.js"></script>
 </body>
