@@ -1,3 +1,4 @@
+
 let mapInstance = null;
 let currentEvents = [];
 let currentLang = "es";
@@ -71,9 +72,6 @@ const translations = {
     }
 };
 
-
-// Traducciones de los eventos que originalmente están en español.
-
 const eventEnglishTranslations = {
     "Festival del Vino": {
         name: "Wine Festival",
@@ -132,9 +130,6 @@ const eventEnglishTranslations = {
     }
 };
 
-
-// Traducciones de los lugares del mapa.
-
 const placeEnglishTranslations = {
     "Museo del Área Fundacional": {
         name: "Foundational Area Museum",
@@ -179,12 +174,8 @@ const placeEnglishTranslations = {
     }
 };
 
-
-// Obtiene los datos del elemento según el idioma seleccionado.
-
 function getTranslatedData(item) {
     if (currentLang === "en") {
-
         if (item.en) {
             return item.en;
         }
@@ -205,21 +196,17 @@ function getTranslatedData(item) {
     return item;
 }
 
-
 function changeLanguage(lang) {
     currentLang = lang;
 
     const text = translations[lang];
 
-    // Pantalla inicial (Splash).
     document.getElementById("txt-splash-title").innerHTML = text.mainTitle;
     document.getElementById("txt-splash-subtitle").innerText = text.splashSubtitle;
     document.getElementById("btn-splash-start").innerText = text.splashStart;
 
-    // Actualizamos el idioma del documento.
     document.documentElement.lang = lang;
 
-    // Pantalla de preferencias.
     document.getElementById("txt-main-title").innerHTML = text.mainTitle;
     document.getElementById("txt-main-subtitle").innerText = text.mainSubtitle;
 
@@ -236,17 +223,14 @@ function changeLanguage(lang) {
 
     document.getElementById("btn-save").innerText = text.btnSave;
 
-    // Pantalla principal.
     document.getElementById("txt-greeting").innerText = text.greeting;
     document.getElementById("txt-home-title").innerText = text.homeTitle;
     document.getElementById("txt-map-title").innerText = text.mapTitle;
 
-    // Navegación.
     document.getElementById("nav-start").innerText = text.navStart;
     document.getElementById("nav-map").innerText = text.navMap;
     document.getElementById("nav-logout").innerText = text.navLogout;
 
-    // Botones de los tres filtros del mapa.
     document.querySelectorAll(".map-chip").forEach(button => {
         const onclickText = button.getAttribute("onclick") || "";
         const icon = button.querySelector("i");
@@ -272,17 +256,14 @@ function changeLanguage(lang) {
         }
     });
 
-    // Actualizamos las recomendaciones.
     if (activePreferences.length > 0) {
         showRecommendedEvents(activePreferences);
     }
 
-    // Actualizamos los marcadores del mapa.
     if (mapInstance) {
         renderMapMarkers();
     }
 }
-
 
 function savePreferences() {
     const username = document.getElementById("username").value.trim();
@@ -317,7 +298,6 @@ function savePreferences() {
     }, 400);
 }
 
-
 function navigateTo(screenId, element) {
     document.querySelectorAll('.app-screen').forEach(screen => {
         screen.classList.remove('active');
@@ -340,6 +320,29 @@ function navigateTo(screenId, element) {
     }
 }
 
+function showEventOnMap(eventIndex) {
+    const event = events[eventIndex];
+
+    if (!event) return;
+
+    activeMapFilter = event.type || event.es?.type || event.en?.type;
+
+    initMap();
+    renderMapMarkers();
+
+    navigateTo('screen-map', document.querySelectorAll('.nav-item')[1]);
+
+    setTimeout(() => {
+        mapInstance.invalidateSize();
+        mapInstance.setView([event.lat, event.lng], 15);
+
+        markersLayer.eachLayer(marker => {
+            if (marker.eventItem === event) {
+                marker.openPopup();
+            }
+        });
+    }, 350);
+}
 
 async function fetchEventosReales() {
     try {
@@ -349,7 +352,6 @@ async function fetchEventosReales() {
         return [];
     }
 }
-
 
 async function showRecommendedEvents(preferences) {
     const container = document.getElementById("events-container");
@@ -380,10 +382,16 @@ async function showRecommendedEvents(preferences) {
     filteredEvents.forEach(event => {
         const imageUrl = event.image;
         const data = getTranslatedData(event);
+        const eventIndex = events.indexOf(event);
 
         container.innerHTML += `
-            <div class="event-card">
-                <div class="card-image" style="background-image: url('${imageUrl}') !important;"></div>
+            <div class="event-card"
+                 onclick="showEventOnMap(${eventIndex})"
+                 style="cursor: pointer;">
+
+                <div class="card-image"
+                     style="background-image: url('${imageUrl}') !important;">
+                </div>
 
                 <div class="card-body">
                     <h3>${data.name}</h3>
@@ -399,7 +407,6 @@ async function showRecommendedEvents(preferences) {
         `;
     });
 }
-
 
 function initMap() {
     if (!mapInstance) {
@@ -418,7 +425,6 @@ function initMap() {
 
     mapInstance.invalidateSize();
 }
-
 
 function renderMapMarkers() {
     if (!markersLayer) return;
@@ -439,30 +445,31 @@ function renderMapMarkers() {
     items.forEach(item => {
         const data = getTranslatedData(item);
 
-        L.marker([item.lat, item.lng])
-            .addTo(markersLayer)
-            .bindPopup(`
-                <div class="map-popup">
-                    <h4>${data.name}</h4>
+        const marker = L.marker([item.lat, item.lng]).addTo(markersLayer);
 
+        marker.eventItem = item;
+
+        marker.bindPopup(`
+            <div class="map-popup">
+                <h4>${data.name}</h4>
+
+                <p>
+                    <strong>${translations[currentLang].lblLocation}</strong>
+                    ${data.location}
+                </p>
+
+                ${data.date ? `
                     <p>
-                        <strong>${translations[currentLang].lblLocation}</strong>
-                        ${data.location}
+                        <strong>${translations[currentLang].lblDate}</strong>
+                        ${data.date}
                     </p>
+                ` : ""}
 
-                    ${data.date ? `
-                        <p>
-                            <strong>${translations[currentLang].lblDate}</strong>
-                            ${data.date}
-                        </p>
-                    ` : ""}
-
-                    ${data.description ? `<p>${data.description}</p>` : ""}
-                </div>
-            `);
+                ${data.description ? `<p>${data.description}</p>` : ""}
+            </div>
+        `);
     });
 }
-
 
 function filterMap(type, button) {
     activeMapFilter = type;
@@ -475,7 +482,6 @@ function filterMap(type, button) {
 
     renderMapMarkers();
 }
-
 
 function logout() {
     document.getElementById("username").value = "";
