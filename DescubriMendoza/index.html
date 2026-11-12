@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,9 +23,7 @@
         
         <!-- PANTALLA 1: SPLASH -->
         <section id="screen-splash" class="app-screen active">
-            <video autoplay muted loop playsinline class="bg-video">
-                <source src="media/video/InicioFondo.mp4" type="video/mp4">
-            </video>
+            <div class="splash-background"></div>
             <div class="video-overlay"></div>
             <div class="splash-content">
                 <div class="logo">
@@ -139,9 +138,15 @@
             <div class="map-wrapper">
                 <div id="map"></div>
                 <div class="map-filters">
-                    <button class="map-chip active"><i class="ph-fill ph-calendar-star"></i> Eventos</button>
-                    <button class="map-chip"><i class="ph ph-person-simple-walk"></i> Actividades</button>
-                    <button class="map-chip"><i class="ph ph-map-pin"></i> Lugares</button>
+                    <button class="map-chip active" onclick="filterMap('evento', this)">
+                        <i class="ph-fill ph-calendar-star"></i> Eventos
+                    </button>
+                    <button class="map-chip" onclick="filterMap('actividad', this)">
+                        <i class="ph ph-person-simple-walk"></i> Actividades
+                    </button>
+                    <button class="map-chip" onclick="filterMap('lugar', this)">
+                        <i class="ph ph-map-pin"></i> Lugares
+                    </button>
                 </div>
             </div>
         </section>

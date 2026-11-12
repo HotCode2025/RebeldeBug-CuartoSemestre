@@ -55,10 +55,48 @@ body {
 .p-0 { padding: 0 !important; }
 
 /* --- SPLASH --- */
-#screen-splash { padding: 0; position: relative; overflow: hidden; }
-.bg-video { position: absolute; width: 100%; height: 100%; object-fit: cover; top: 0; left: 0; }
-.video-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.5); top: 0; left: 0; }
-.splash-content { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; padding: 40px; color: white; text-align: center; }
+/* --- SPLASH --- */
+#screen-splash {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.splash-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("media/img/SplashFondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.splash-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
 .logo i { font-size: 50px; margin-bottom: 10px; }
 .logo h1 { font-size: 32px; font-weight: 700; line-height: 1.2; }
 .splash-content p { margin: 12px 0 24px 0; }
