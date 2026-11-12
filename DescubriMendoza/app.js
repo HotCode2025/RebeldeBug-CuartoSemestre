@@ -9,6 +9,8 @@ const translations = {
     es: {
         mainTitle: "DESCUBRÍ<br>MENDOZA",
         mainSubtitle: "Tu guía de experiencias",
+        splashSubtitle: "Tu próxima aventura comienza acá",
+        splashStart: "Comenzar",
         formTitle: "Contanos qué<br>te interesa",
         formSubtitle: "Seleccioná tus preferencias para recomendarte mejores experiencias.",
         labelUsername: "Nombre de usuario",
@@ -39,6 +41,8 @@ const translations = {
     en: {
         mainTitle: "DISCOVER<br>MENDOZA",
         mainSubtitle: "Your guide to experiences",
+        splashSubtitle: "Your next adventure starts here",
+        splashStart: "Get started",
         formTitle: "Tell us what<br>interests you",
         formSubtitle: "Select your preferences to find the best experiences.",
         labelUsername: "Username",
@@ -207,11 +211,18 @@ function changeLanguage(lang) {
 
     const text = translations[lang];
 
-    // Pantalla de bienvenida.
+    // Pantalla inicial (Splash).
+    document.getElementById("txt-splash-title").innerHTML = text.mainTitle;
+    document.getElementById("txt-splash-subtitle").innerText = text.splashSubtitle;
+    document.getElementById("btn-splash-start").innerText = text.splashStart;
+
+    // Actualizamos el idioma del documento.
+    document.documentElement.lang = lang;
+
+    // Pantalla de preferencias.
     document.getElementById("txt-main-title").innerHTML = text.mainTitle;
     document.getElementById("txt-main-subtitle").innerText = text.mainSubtitle;
 
-    // Pantalla de preferencias.
     document.getElementById("txt-form-title").innerHTML = text.formTitle;
     document.getElementById("txt-form-subtitle").innerText = text.formSubtitle;
     document.getElementById("txt-label-username").innerText = text.labelUsername;
